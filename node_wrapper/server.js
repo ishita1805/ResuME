@@ -14,7 +14,7 @@ app.get('/', async(req,res) => {
 })
 
 
-app.get('/auth', async(req,res) => {
+app.get('/getBooks', async(req,res) => {
     axios.get('https://www.linkedin.com/oauth/v2/authorization',{
         params:{
             response_type:"code",

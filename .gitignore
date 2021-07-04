@@ -1,3 +1,5 @@
-.env
-node_modules
-config.txt
+/node_wrapper/.env
+/node_wrapper/node_modules
+/Scraping/config.txt
+/Scraping/helper.json
+/CLI/__pycache__
