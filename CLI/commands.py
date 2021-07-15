@@ -1,4 +1,6 @@
-from utils import setENV, verifyLinkedinURL
+from utils import setENV, verifyLinkedinURL, getENV, builder
+from scraping import scraping
+
 from pyfiglet import Figlet
 from PyInquirer import style_from_dict, Token, prompt
 from PyInquirer import Validator, ValidationError
@@ -24,6 +26,11 @@ def init():
     questions = [
         {
             'type': 'input',
+            'message': 'Enter your github PAT',
+            'name': 'PAT'
+        },
+        {
+            'type': 'input',
             'message': 'Enter your netlify API Token',
             'name': 'username'
         },
@@ -37,39 +44,6 @@ def init():
     answers = prompt(questions, style=style)
     setENV(answers)
     print('Thanks! \nNext: Use the "build" command')
-
-
-def build():
-    questions = [
-        {
-            'type': 'input',
-            'message': 'Enter Linkedin profile',
-            'name': 'Linkedin'
-        },
-        {
-            'type': 'input',
-            'message': 'Do you want to use a custom domain? (Leave blank if "No")',
-            'name': 'domain'
-        },
-    ]
-
-    answers = prompt(questions, style=style)
-    if(answers['domain']):
-        dns_params = dns()
-        print(answers)
-        print(dns_params)
-    # print(answers)
-    # print('\n')   
-    verification = verifyLinkedinURL(answers["Linkedin"])
-    if(verification == 'None'):
-        print("Error: Linkedin link not valid")
-    else:
-        # function to scrape and handle error
-        # function to build website and push website to github
-        # function to deploy website to netlify
-        print('Deployed to github at link: xxx-xxx-xxx-xxx')
-        print('Deployed on netlify at link: xx-xxx-xx.netlify.app')
-        print('Thanks!\nNext: Use the "dns" command')
 
 
 def dns():
@@ -94,7 +68,48 @@ def dns():
     return answers
 
 
+def build():
+    # check if username, password and PAT are set - make this work
+    # if(getENV("PAT")==None or getENV("username")==None or getENV("password")==None):
+    #     print("please use init command first");
+    #     return;
+
+    questions = [
+        {
+            'type': 'input',
+            'message': 'Enter Linkedin profile',
+            'name': 'Linkedin'
+        },
+        {
+            'type': 'input',
+            'message': 'Do you want to use a custom domain? (Leave blank if "No")',
+            'name': 'domain'
+        },
+    ]
+
+    answers = prompt(questions, style=style)
+
+    if(answers['domain']):
+        dns_params = dns()
+        print(answers)
+        print(dns_params)
+    
+    verification = verifyLinkedinURL(answers["Linkedin"])
+    if(verification ==None):
+        print("Error: Linkedin link not valid");
+        return;
+
+    # Scrape
+    obj = scraping(answers['Linkedin'])
+    # function to build website and push website to github
+    builder(obj)
+    # function to deploy website to netlify
+    print('Pushed to github: xxx-xxx-xxx-xxx')
+    print('Deployed on netlify at link: xx-xxx-xx.netlify.app')
+    print('Thanks!\nNext: Use the "dns" command')
+
+
 def websites():
-    print('all websites deployed are:\n')
-    # function to fetch all websites
-    print('URL: xxx.xxxxx.xxx')
+    print('all websites created are:\n')
+    # function to fetch all websites from github
+    print('Link: xxx.xxxxx.xxx')

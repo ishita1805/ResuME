@@ -7,7 +7,7 @@ import chromedriver_binary
 import json
 
 #accessing the browser
-def scraping():    
+def scraping(url):    
     options = webdriver.ChromeOptions()
     options.add_argument("--incognito")
     caps = options.to_capabilities()
@@ -25,7 +25,7 @@ def scraping():
     elementID.send_keys(password)
     elementID.submit()
 
-    profile='https://www.linkedin.com/in/paige-liwanag/'
+    profile=url
     browser.get(profile)
 
     full_height = browser.execute_script('return document.body.scrollHeight');
@@ -244,10 +244,10 @@ def scraping():
     
     return(data)
 
-data = scraping()
+# data = scraping()
 
-json_object = json.dumps(data, indent = 4)  
-print(json_object)
+# json_object = json.dumps(data, indent = 4)  
+# print(json_object)
 
 # to do: fix the displacement bug 
 # do it like volunteer wherever possible

@@ -10,11 +10,11 @@ app.use(cors())
 
 
 app.get('/', async(req,res) => {
-   res.send('Hi');
+   res.send('API Health OK!');
 })
 
 
-app.get('/getBooks', async(req,res) => {
+app.get('/auth', async(req,res) => {
     axios.get('https://www.linkedin.com/oauth/v2/authorization',{
         params:{
             response_type:"code",
