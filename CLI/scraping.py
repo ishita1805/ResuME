@@ -3,6 +3,7 @@ import requests
 from time import sleep
 from selenium import webdriver
 from bs4 import BeautifulSoup
+from selenium.webdriver.common.by import By
 import chromedriver_binary
 import json
 
@@ -38,9 +39,10 @@ def scraping(url):
     experience= ""
     volunteer = ""
 
+
     # ---------------------------------------------------------- #
 
-    while cur_height<full_height:
+    while cur_height<=full_height:
         sleep(10)
         
         #get basics
@@ -94,6 +96,8 @@ def scraping(url):
         except Exception as e:
             pass
 
+        #get skills 
+        
         browser.execute_script("window.scrollTo(0,"+str(cur_height)+");")
         cur_height+=cur_height
 
@@ -123,7 +127,8 @@ def scraping(url):
     #GET ABOUT INFO
     try:
         ABOUT = BeautifulSoup(about, "lxml").get_text().split("   ")[-1].strip()
-        data["about"] = ABOUT
+        if(ABOUT != 'About'):
+            data["about"] = ABOUT
     except Exception as e:
         pass
     
@@ -133,27 +138,15 @@ def scraping(url):
         Eds = EDUCATION.find_all("li")
         Educations = []
         for i in range(len(Eds)):
-            ed = {
-                "Institute":"",
-                "Degree":"",
-                "Time":"",
-                "Branch":""
-                }
+            ed = dict()
             if(Eds[i].find("h3")):
                 Institute = Eds[i].find("h3").get_text().strip()
                 ed["Institute"] = Institute
-                
-            if(len(Eds[i].find_all("span"))>1):
-                Degree = Eds[i].find_all("span")[1].get_text().strip()
-                ed["Degree"] = Degree  
-                
-            if(len(Eds[i].find_all("time"))>1):
-                Time = Eds[i].find_all("time")[0].get_text().strip()+"-"+Eds[i].find_all("time")[1].get_text().strip()
-                ed["Time"] = Time  
-                
-            if(len(Eds[i].find_all("span"))>3):
-                Branch = Eds[i].find_all("span")[3].get_text().strip()
-                ed["Branch"] = Branch   
+
+            OtherInfo = Eds[i].find_all("p")
+            for j in range(len(OtherInfo)):
+                ed[OtherInfo[j].find_all("span")[0].get_text().strip()] = OtherInfo[j].find_all("span")[1].get_text().strip()      
+        
             Educations.append(ed)
         data["education"]=Educations
     except Exception as e:
@@ -165,58 +158,38 @@ def scraping(url):
         Exs = EXPERIENCE.find_all("li", class_="pv-profile-section__list-item")
         Experiences = []
         for i in range(len(Exs)):
-            lis = Exs[i].find_all("li")
-            if(len(lis)>0): #case with roles
-                ex = {
-                "Company":"",
-                "Duration":"",
-                "Roles":[]
-                }
-                spans = Exs[i].find_all("span")
-                if(len(spans)>=2):
-                    ex["Company"] = spans[1].get_text().strip()
-                if(len(spans)>=4):
-                    ex["Duration"] = spans[3].get_text().strip()
-                for j in range(len(lis)):
-                    role = {
-                    "Title":"",
-                    "Dates":"",
-                    "Duration":"",
-                    "Location":""
-                    }
-                    spans_in = lis[j].find_all("span")
-                    role["Title"] = spans_in[2].get_text().strip()
-                    if(len(spans_in)>=5):
-                        role["Dates"] = spans_in[4].get_text().strip()
-                    if(len(spans_in)>=7):
-                        role["Duration"] = spans_in[6].get_text().strip()
-                    if(len(spans_in)>=9):
-                        role["Location"] = spans_in[8].get_text().strip()
-                    ex["Roles"].append(role)
-                Experiences.append(ex)
-            else: #case without roles
-                ex = {
-                    "Role":"",
-                    "Company":"",
-                    "Job_Type":"",
-                    "Dates":"",
-                    "Duration":"",
-                    "Location":""
-                }
-                spans_2 = Exs[i].find_all("span")
-                if(Exs[i].find_all("h3")[0]):
-                    ex["Role"] = Exs[i].find_all("h3")[0].get_text().strip()
-                if(len(Exs[i].find_all("p"))>=2):
-                    ex["Company"] = Exs[i].find_all("p")[1].get_text().strip().split("\n")[0]
-                if(len(spans_2)>=1):
-                    ex["Job_Type"] = spans_2[0].get_text().strip()
-                if(len(spans_2)>=3):
-                    ex["Dates"] = spans_2[2].get_text().strip()
-                if(len(spans_2)>=5):
-                    ex["Duration"] = spans_2[4].get_text().strip()
-                if(len(spans_2)>=7):
-                    ex["Location"] = spans_2[6].get_text().strip()
-                Experiences.append(ex)   
+            exp = dict()
+            
+            if(len(Exs[i].find_all("ul")) >0):
+                # case with multiple roles
+                exp['Company Name'] = Exs[i].find_all("h3")[0].find_all("span")[1].get_text().strip()
+                roles = Exs[i].find_all("li")
+                exp1_arr = []
+                for j in range(len(roles)):
+                    dt1 = roles[j].find_all("h3")
+                    dt2 = roles[j].find_all("h4")
+                    exp1 = dict()
+                    for k in range(len(dt1)):
+                        sp = dt1[k].find_all("span")
+                        exp1[sp[0].get_text().strip()] = sp[1].get_text().strip()
+                    for k in range(len(dt2)):
+                        sp = dt2[k].find_all("span")
+                        exp1[sp[0].get_text().strip()] = sp[1].get_text().strip()
+                    exp1_arr.append(exp1)
+                exp['Roles'] = exp1_arr
+
+            else:
+                # heading
+                exp['Role'] = Exs[i].find("h3").get_text().strip()
+                dataList = Exs[i].find_all("h4")
+                # other data
+                for j in range(len(dataList)):
+                    exp[dataList[j].find_all("span")[0].get_text().strip()] = dataList[j].find_all("span")[1].get_text().strip()
+                # company name
+                exp[Exs[i].find_all("p")[0].get_text().strip()] = Exs[i].find_all("p")[1].get_text().strip().split("\n")[0]
+            
+            # adding to list
+            Experiences.append(exp)  
         data["experience"]=Experiences
     except Exception as e:
         pass
@@ -242,12 +215,21 @@ def scraping(url):
     except Exception as e:
         pass
     
+    # GET SKILLS
+    # try:
+    #     SKILLS =  BeautifulSoup(skills, "lxml")
+    #     print(SKILLS)
+    # except Exception as e:
+    #     pass
+
     return(data)
 
-# data = scraping()
+# data = scraping("https://www.linkedin.com/in/paige-liwanag/")
+data = scraping("https://www.linkedin.com/in/ishita-kabra-3b305818b/")
 
-# json_object = json.dumps(data, indent = 4)  
-# print(json_object)
+json_object = json.dumps(data, indent = 4)  
+print(json_object)
 
-# to do: fix the displacement bug 
-# do it like volunteer wherever possible
+# TODOs: 
+# 1. look for button clicks in the main scraping script
+# 2. add skills

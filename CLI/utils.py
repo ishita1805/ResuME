@@ -16,7 +16,8 @@ def verifyLinkedinURL(url):
 
 def builder(data):
     obj = json.dumps(data, indent = 4)
-    # api request to build the website push it to github
+    # node wrapper to create a json file using obj in the template folder and then upload the template folder to github
+    # api request to push the website to github
     print(obj)
 
 def netlify(data):
