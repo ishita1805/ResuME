@@ -1,6 +1,5 @@
-from utils import setENV, verifyLinkedinURL, getENV, builder
+from utils import setENV, verifyLinkedinURL, builder
 from scraping import scraping
-
 from pyfiglet import Figlet
 from PyInquirer import style_from_dict, Token, prompt
 from PyInquirer import Validator, ValidationError
@@ -16,11 +15,9 @@ style = style_from_dict({
 })
 
 
-
 def welcome():
-    f = Figlet(font='')
+    f = Figlet(font='slant')
     print(f.renderText('ResuME'))
-
 
 def init():
     questions = [
@@ -45,7 +42,6 @@ def init():
     setENV(answers)
     print('Thanks! \nNext: Use the "build" command')
 
-
 def dns():
     questions = [
         {
@@ -67,13 +63,7 @@ def dns():
     answers = prompt(questions, style=style)
     return answers
 
-
 def build():
-    # check if username, password and PAT are set - make this work
-    # if(getENV("PAT")==None or getENV("username")==None or getENV("password")==None):
-    #     print("please use init command first");
-    #     return;
-
     questions = [
         {
             'type': 'input',
@@ -82,14 +72,14 @@ def build():
         },
         {
             'type': 'input',
-            'message': 'Do you want to use a custom domain? (Leave blank if "No")',
+            'message': 'Do you want to use a custom domain? (yes/no)',
             'name': 'domain'
         },
     ]
 
     answers = prompt(questions, style=style)
 
-    if(answers['domain']):
+    if("y" in answers['domain'].lower()):
         dns_params = dns()
         print(answers)
         print(dns_params)
@@ -106,8 +96,7 @@ def build():
     # function to deploy website to netlify
     print('Pushed to github: xxx-xxx-xxx-xxx')
     print('Deployed on netlify at link: xx-xxx-xx.netlify.app')
-    print('Thanks!\nNext: Use the "dns" command')
-
+    print('Thanks!\nNext: Use the "websites" command')
 
 def websites():
     print('all websites created are:\n')

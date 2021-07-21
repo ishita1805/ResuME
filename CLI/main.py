@@ -1,14 +1,20 @@
 import fire
-from commands import init, build, websites
+from commands import init, build, websites, welcome
+from utils import getENV
 
 def initfunc():
+    welcome()
     init()
 
 def buildfunc():
-    # function to check if env variables are set
+    if(getENV("PAT")==None or getENV("username")==None or getENV("password")==None):
+        print("please use 'init' command first");
+        return;
+    welcome()
     build()
 
 def listfunc():
+    welcome()
     websites()
 
 if __name__ == '__main__':
@@ -17,21 +23,3 @@ if __name__ == '__main__':
         'build': buildfunc,
         'list':listfunc
     })
-
-#  COMMANDS 
-# 1. resume Init
-# - enter github dev key and save it to system variables
-# - enter netlify id and pass and save it to system variables
-
-# 2. resume build
-# - enter linkedin profile and generate a zip
-# - deploy it to netlify
-# - display netlify link to user
-
-#4. LIST
-#- list all domains in use from netlify
-
-# TO-Do list
-# 1. Write bash script for installation
-# 2. Fix bug in the scraping script
-# 3. Create a requirements.txt file
