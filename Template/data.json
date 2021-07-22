@@ -1,0 +1,93 @@
+{
+    "profile": {
+        "Name": "Ishita Kabra",
+        "Headline": "Student Developer | Projects and Events Head at TEC-VIT",
+        "Location": "Tamil Nadu, India"
+    },
+    "about": "Skilled in Responsive Web Design, Digital Image Processing, python and Web Development. Strong engineering professional, pursuing Bachelor of Technology - BTech focused in ECE IOT from Vellore Institute of Technology.",
+    "education": [
+        {
+            "Institute": "Vellore Institute of Technology",
+            "Degree Name": "Bachelor of Technology - BTech",
+            "Field Of Study": "ECE IOT",
+            "Dates attended or expected graduation": "2018 \u2013 2022"
+        }
+    ],
+    "experience": [
+        {
+            "Company Name": "The Electronics Club, VIT",
+            "Roles": [
+                {
+                    "Title": "Projects and Events Head",
+                    "Dates Employed": "Dec 2020 \u2013 Present",
+                    "Employment Duration": "8 mos",
+                    "Location": "Vellore, Tamil Nadu, India"
+                },
+                {
+                    "Title": "The Electronics Club, VIT",
+                    "Dates Employed": "Dec 2018 \u2013 Present",
+                    "Employment Duration": "2 yrs 8 mos",
+                    "Location": "Vellore, Tamil Nadu"
+                },
+                {
+                    "Title": "Core Committee Member",
+                    "Dates Employed": "Sep 2019 \u2013 Present",
+                    "Employment Duration": "1 yr 11 mos",
+                    "Location": "Vellore, Tamil Nadu"
+                },
+                {
+                    "Title": "Speaker at Sensored (Annual workshop on IoT and Sensors)",
+                    "Dates Employed": "Sep 2019",
+                    "Employment Duration": "1 mo",
+                    "Location": "Vellore, Tamil Nadu"
+                }
+            ]
+        },
+        {
+            "Role": "MERN Stack Trainer",
+            "Dates Employed": "Mar 2021 \u2013 May 2021",
+            "Employment Duration": "3 mos",
+            "Company Name": "Codebugged AI"
+        },
+        {
+            "Role": "Product Development Lead",
+            "Dates Employed": "Mar 2021 \u2013 May 2021",
+            "Employment Duration": "3 mos",
+            "Location": "Mumbai, Maharashtra, India",
+            "Company Name": "HEED India"
+        },
+        {
+            "Role": "Full stack web developer",
+            "Dates Employed": "Nov 2020 \u2013 Apr 2021",
+            "Employment Duration": "6 mos",
+            "Location": "Gurugram, Haryana, India",
+            "Company Name": "Umbrette"
+        },
+        {
+            "Role": "Full Stack Web Developer",
+            "Dates Employed": "Aug 2020 \u2013 Oct 2020",
+            "Employment Duration": "3 mos",
+            "Company Name": "Codebugged AI"
+        },
+        {
+            "Role": "Web Developer",
+            "Dates Employed": "May 2020 \u2013 Aug 2020",
+            "Employment Duration": "4 mos",
+            "Location": "India",
+            "Company Name": "ProjectFofficial"
+        }
+    ],
+    "skills": [
+        "Node.js",
+        "React.js",
+        "Web Development",
+        "Responsive Web Design",
+        "C (Programming Language)",
+        "Arduino",
+        "Microsoft Azure",
+        "JavaScript",
+        "Full-Stack Development",
+        "Digital Image Processing",
+        "OpenCV"
+    ]
+}

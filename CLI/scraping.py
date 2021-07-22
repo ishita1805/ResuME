@@ -34,40 +34,58 @@ def scraping(url):
     full_height = browser.execute_script('return document.body.scrollHeight')
     cur_height = browser.execute_script('return window.innerHeight')
 
+
+    skills = False
+    about = False
+    exper = False
+    more = False
+    accomp = False
+    
+
     data = dict()
 
     # ---------------------------------------------------------- #
 
     while cur_height <= full_height:
-        sleep(10)
+        sleep(15)
         # about expand
         try:
-            button = browser.find_element_by_xpath("//button[@class='inline-show-more-text__button inline-show-more-text__button--light link']")
-            browser.execute_script("arguments[0].click();", button)
+            if(about == False):    
+                button = browser.find_element_by_xpath("//button[@class='inline-show-more-text__button inline-show-more-text__button--light link']")
+                browser.execute_script("arguments[0].click();", button)
+                about = True
         except Exception as e:
             pass
         # experience expand
         try:
-            button = browser.find_element_by_xpath("//button[@class='pv-profile-section__see-more-inline pv-profile-section__text-truncate-toggle artdeco-button artdeco-button--tertiary artdeco-button--muted']")
-            browser.execute_script("arguments[0].click();", button)
+            if(exper == False):
+                button = browser.find_element_by_xpath("//button[@class='pv-profile-section__see-more-inline pv-profile-section__text-truncate-toggle artdeco-button artdeco-button--tertiary artdeco-button--muted']")
+                browser.execute_script("arguments[0].click();", button)
+                exper = True
         except Exception as e:
             pass
         # skills expand
         try:
-            button = browser.find_element_by_xpath("//button[@class='pv-profile-section__card-action-bar pv-skills-section__additional-skills artdeco-container-card-action-bar artdeco-button artdeco-button--tertiary artdeco-button--3 artdeco-button--fluid artdeco-button--muted']")
-            browser.execute_script("arguments[0].click();", button)
+            if(skills == False):
+                button = browser.find_element_by_xpath("//button[@class='pv-profile-section__card-action-bar pv-skills-section__additional-skills artdeco-container-card-action-bar artdeco-button artdeco-button--tertiary artdeco-button--3 artdeco-button--fluid artdeco-button--muted']")
+                browser.execute_script("arguments[0].click();", button)
+                skills = True
         except Exception as e:
             pass
         # see more buttons expand
         try:
-            button = browser.find_element_by_xpath("//button[@class='inline-show-more-text__buttond']")
-            browser.execute_script("arguments[0].click();", button)
+            if(more == False):
+                button = browser.find_element_by_xpath("//button[@class='inline-show-more-text__buttond']")
+                browser.execute_script("arguments[0].click();", button)
+                more = True
         except Exception as e:
             pass
         # accomplishments expand
         try:
-            button = browser.find_element_by_xpath("//button[@class='pv-accomplishments-block__expand artdeco-button artdeco-button--circle artdeco-button--muted artdeco-button--2 artdeco-button--tertiary ember-view']")
-            browser.execute_script("arguments[0].click();", button)
+            if(accomp == False):
+                button = browser.find_element_by_xpath("//button[@class='pv-accomplishments-block__expand artdeco-button artdeco-button--circle artdeco-button--muted artdeco-button--2 artdeco-button--tertiary ember-view']")
+                browser.execute_script("arguments[0].click();", button)
+                accomp = True
         except Exception as e:
             pass
 
@@ -197,6 +215,3 @@ def scraping(url):
 
     json_object = json.dumps(data, indent=4)
     return(json_object)
-
-# data = scraping("https://www.linkedin.com/in/ishita-kabra-3b305818b/")
-# print(data)

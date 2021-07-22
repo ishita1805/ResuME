@@ -21,6 +21,11 @@ def welcome():
 
 def init():
     questions = [
+         {
+            'type': 'input',
+            'message': 'Enter your github username',
+            'name': 'owner'
+        },
         {
             'type': 'input',
             'message': 'Enter your github PAT',
@@ -94,8 +99,8 @@ def build():
     # function to build website and push website to github
     builder(obj)
     # function to deploy website to netlify
-    print('Pushed to github: xxx-xxx-xxx-xxx')
-    print('Deployed on netlify at link: xx-xxx-xx.netlify.app')
+    # print('Pushed to github: xxx-xxx-xxx-xxx')
+    # print('Deployed on netlify at link: xx-xxx-xx.netlify.app')
     print('Thanks!\nNext: Use the "websites" command')
 
 def websites():

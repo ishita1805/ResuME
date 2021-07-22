@@ -2,6 +2,7 @@ import os
 import re
 import json
 import sys
+import requests
 
 def createPath(path):
     if not os.path.exists(path):
@@ -41,12 +42,31 @@ def verifyLinkedinURL(url):
 # TODO
 
 def builder(data):
-    # node wrapper to create a json file using obj in the template folder and then upload the template folder to github
+    with open("../Template/data.json", "w") as outfile:
+        outfile.write(data)
+    github()
     # api request to push the website to github
     # api request to deploy github link to netlify
-    print(data)
 
 def netlify(data):
     # api request
     print('deploy to netlify')
 
+def github():
+    # variables
+    PAT = getENV("PAT")
+    API_URL = 'https://api.github.com'
+    Owner = getENV("owner")
+    Payload = '{ "name":"My-ResuME-Website" }'
+    Headers = {
+        "Authorization": "token "+PAT,
+        "Accept": "application/vnd.github.v3+json"
+    }
+    # create a new repo
+    requests.post(API_URL+'/user/repos',data=Payload, headers=Headers)
+    # push the template folder to the repo
+    push_to_github(Owner,"My-ResuME-Website","data.json",'"{"message":"dummy json data"}"')
+
+def push_to_github(owner, repo, path, data):
+    PAT = getENV("PAT")
+    API_URL = 'https://api.github.com'
