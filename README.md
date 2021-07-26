@@ -1,4 +1,4 @@
-###  ResuME - Website Generator[ResuME](https://github.com/ishita1805/ResuME)
+### [ResuME - Website Generator ](https://github.com/ishita1805/ResuME)
 *A CLI Tool to generate and deploy websites using your linkedin profile*
 
 **Installation**
