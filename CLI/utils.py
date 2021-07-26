@@ -93,7 +93,7 @@ def updateBuilder(data):
     # push to github
     os.system("git add .")
     os.system("git commit -m 'website-updated'")
-    os.system("git push origin master -f")
+    os.system("git push -f")
 
 
 
