@@ -10,84 +10,195 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
-    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet">
     <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./style.css"/>
 </head>
 
 
-<body data-spy="scroll" data-target="#navbar" offset="100">
-    <div id="navbar">
-        <p>Ishita Kabra</p>
-        <ul class="nav">
-            <li> <a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experiences">Experiences</a></li>
-            <li><a href="#volunteering">Volunteering</a></li>
-        </ul>
+<body data-spy="scroll" data-target="#navbar">
+    <nav id="navbar" class='navbar-inverse navbar-fixed-top nav-custom-bg'>
+        <div class='container-fluid'>
+            
+            <div class='navbar-header navbar-right'>
+                <button class='navbar-toggle custom-hamburger' data-toggle='collapse' data-target='#menu'>
+                    <span class='icon-bar'></span>
+                    <span class='icon-bar'></span>
+                    <span class='icon-bar'></span>
+                </button>
+                <img src='./assets/Logo.svg' class='nav-image'/>
+            </div>
+            <div class="collapse navbar-collapse navbar-left" id='menu'>
+                <ul class='nav navbar-nav nav-cont'>
+                    <li class='nav-items'> <a href="#home">Home</a></li>
+                    <li class='nav-items'><a href="#about">About</a></li>
+                    <li class='nav-items'><a href="#skills">Skills</a></li>
+                    <li class='nav-items'><a href="#experiences">Work</a></li>
+                    <li class='nav-items'><a href="#projects">Projects</a></li>
+                    <li class='nav-items'><a href="#volunteering">Volunteering</a></li>
+                </ul>
+            </div>
+        </nav>
+      
     </div>
 
     <div id='home'>
-        <h1>Hey There, I'm <b>Ishita Kabra</b></h1>
-        <h3>My tagline will come here</h3>
-        <div class='row'>
-        <button>Let's Connect &ensp; <span class="material-icons-outlined">arrow_right_alt</span></button>
-        &emsp;
-        <button class="bt-line">in</button>
+        <div class='column'>
+            <p>Hey There!</p>
+            <h1>I am Yayathi Datta</h1>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
         </div>
-        <div id="particles-js"></div>
+        <img src='assets/landing.svg' class='image-landing'/>
     </div>
 
     <div id='about'>
         <h1>About Me</h1>
-        <br/>
-        <p>Skilled in Responsive Web Design, Digital Image Processing, python and Web Development. Strong engineering professional, pursuing Bachelor of Technology - BTech focused in ECE IOT from Vellore Institute of Technology.</p>
-        <h3>Education</h3>
-        <p><b>Degree:</b> Bachelor of Technology - BTech</p>
-        <p><b>Institute:</b> Vellore Institute of Technology</p>
-        <p><b>Branch:</b> ECE IOT</p>
-        <p><b>Duration:</b> 2018-2022</p>
-        <p><b>Location:</b> Tamil Nadu, India</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Quam morbi egestas faucibus tincidunt morbi ipsum habitasse 
+            ultricies at. A, sed augue vestibulum dis tellus diam. 
+            Porttitor amet commodo elementum nunc volutpat volutpat 
+            ultricies in bibendum. Egestas sed egestas ipsum dignissim 
+            quam viverra et. Quis nullam dignissim vitae feugiat sed libero. 
+            Ut molestie elementum vitae lorem odio odio suspendisse amet. 
+            Adipiscing in senectus risus dignissim pellentesque proin. 
+            Aliquet in ornare ornare viverra eget. Aliquet suspendisse 
+            erat id nisl pellentesque netus eleifend condimentum sit.</p>
     </div>
 
-    <div id='experiences' >
-        <h1>My Experiences</h1>
-        <div class='card'>
-            <span class="material-icons-outlined">
-                badge
-            </span>
-            <br/>
-            <p><b>Role:</b> Full stack web developer</p>
-            <p><b>Company:</b> Umbrette</p>
-            <p><b>Job Type:</b> Internship</p>
-            <p><b>Dates:</b> Nov 2020 - Apr 2021</p>
-            <p><b>Duration:</b> 6 mos</p>
-            <p><b>Location:</b> Gurugram, Haryana, India</p>
+    <div class='education'>
+        <h4>My Education</h4>
+        <div class='education-cont'>
+            <h3>Full-stack Developer</h3>
+            <p><b>Growth Source Financial Technologies Private Limited</b></p>
+            <p>Nov 2020 - Apr 2021</p>
+            <p>Mumbai, Maharashtra, India</p>
+        </div>
+    </div>
+
+    <div id='skills'>
+        <h1>My Skills</h1>
+        <ul class='skils-container'>
+            <li>JavaScript</li>
+            <li>Node.js</li>
+            <li>Data Structures</li>
+            <li>C (Programming Language)</li>
+            <li>Python (Programming Language)</li>
+            <li>MERN Stack</li>
+            <li>Amazon EC2</li>
+            <li>Full-Stack Development</li>
+        </ul>
+    </div>
+
+    <div id='experiences'>
+        <div class='exp-row'>
+            <div>
+                <h1>Work Experience</h1>
+                <div class='exp-cont'>
+                    <div class='exp'>
+                        <div class='exp-bullet'></div>
+                        <div class='exp-col'>
+                        <h3>Full-stack Developer</h3>
+                        <b>Growth Source Financial Technologies Private Limited</b>
+                        <p>Nov 2020 - Apr 2021  (6 mos)</p>
+                        <p>Mumbai, Maharashtra, India</p>
+                        </div>
+                    </div>
+
+                    <div class='exp'>
+                        <div class='exp-bullet'></div>
+                        <div class='exp-col'>
+                        <h3>Full-stack Developer</h3>
+                        <b>Growth Source Financial Technologies Private Limited</b>
+                        <p>Nov 2020 - Apr 2021  (6 mos)</p>
+                        <p>Mumbai, Maharashtra, India</p>
+                        </div>
+                    </div>
+
+                    <div class='exp'>
+                        <div class='exp-bullet'></div>
+                        <div class='exp-col'>
+                        <h3>Full-stack Developer</h3>
+                        <b>Growth Source Financial Technologies Private Limited</b>
+                        <p>Nov 2020 - Apr 2021  (6 mos)</p>
+                        <p>Mumbai, Maharashtra, India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src='assets/work.svg' class='exp-image'/>
+        </div>
+    </div>
+
+    <div id='projects'>
+        <h1>My Projects</h1>
+        <div class='projects-cont'>
+            <div class='project-card'>
+                <b>Project Title</b>
+                <p>Project Subtitle</p>
+                <p class='project-text'>
+                    Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Nec fringilla ut interdum amet integer feugiat.
+                </p>
+            </div>
+
+            <div class='project-card'>
+                <b>Project Title</b>
+                <p>Project Subtitle</p>
+                <p class='project-text'>
+                    Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Nec fringilla ut interdum amet integer feugiat.
+                </p>
+            </div>
+
+            <div class='project-card'>
+                <b>Project Title</b>
+                <p>Project Subtitle</p>
+                <p class='project-text'>
+                    Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Nec fringilla ut interdum amet integer feugiat.
+                </p>
+            </div>
+
+            <div class='project-card'>
+                <b>Project Title</b>
+                <p>Project Subtitle</p>
+                <p class='project-text'>
+                    Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Nec fringilla ut interdum amet integer feugiat.
+                </p>
+            </div>
         </div>
     </div>
 
     <div id='volunteering'>
-        <h1>Places I Volunteered At</h1>
-        <div class='card'>
-            <span class="material-icons-outlined">
-                volunteer_activism
-            </span>
-            <br/>
-            <p><b>Role:</b> Full stack web developer</p>
-            <p><b>Company:</b> Umbrette</p>
-            <p><b>Job Type:</b> Internship</p>
-            <p><b>Dates:</b> Nov 2020 - Apr 2021</p>
-            <p><b>Duration:</b> 6 mos</p>
-            <p><b>Location:</b> Gurugram, Haryana, India</p>
+        <h1>Volunteering Experience</h1>
+        <div class='exp-cont'>
+            <div class='exp'>
+                <div class='exp-bullet'></div>
+                <div class='exp-col'>
+                <h3>Full-stack Developer</h3>
+                <b>Growth Source Financial Technologies Private Limited</b>
+                <p>Nov 2020 - Apr 2021  (6 mos)</p>
+                <p>Mumbai, Maharashtra, India</p>
+                </div>
+            </div>
+
+            <div class='exp'>
+                <div class='exp-bullet'></div>
+                <div class='exp-col'>
+                <h3>Full-stack Developer</h3>
+                <b>Growth Source Financial Technologies Private Limited</b>
+                <p>Nov 2020 - Apr 2021  (6 mos)</p>
+                <p>Mumbai, Maharashtra, India</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <footer>© 2021  | Made using ResuME</footer>
+    <footer>
+        <img src='assets/Logoblack.svg' class='nav-image'/>
+        <span>Made using ResuME - Website Generator</span>
+    </footer>
   
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src='./main.js'></script>
   </body>
 
