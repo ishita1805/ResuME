@@ -1,9 +1,7 @@
 import fire
-from commands import init, build, websites, welcome
+from commands import init, build, websites, welcome, update
 from utils import getENV
 
-def initfunc():
-    init()
 
 def buildfunc():
     if(getENV("PAT")==None or getENV("username")==None or getENV("password")==None):
@@ -11,13 +9,13 @@ def buildfunc():
         return;
     build()
 
-def listfunc():
-    websites()
+
 
 if __name__ == '__main__':
     welcome()
     fire.Fire({
-        'init': initfunc,
+        'init': init,
         'build': buildfunc,
-        'list':listfunc
+        'list':websites,
+        'update':update
     })

@@ -1,4 +1,4 @@
-from utils import setENV, verifyLinkedinURL, builder
+from utils import setENV, verifyLinkedinURL, builder, updateBuilder
 from scraping import scraping
 from pyfiglet import Figlet
 from PyInquirer import style_from_dict, Token, prompt
@@ -93,15 +93,36 @@ def build():
     if(verification ==None):
         print("Error: Linkedin link not valid");
         return;
-
     # Scrape
     obj = scraping(answers['Linkedin'])
     # function to build website and push website to github
-    builder(obj)
-    # function to deploy website to netlify
-    # print('Pushed to github: xxx-xxx-xxx-xxx')
-    # print('Deployed on netlify at link: xx-xxx-xx.netlify.app')
-    print('Thanks!\nNext: Use the "websites" command')
+    op = builder(obj)
+    if(op):
+        print('Error: Repository already exists! try the "update" command')
+    else:
+        print('Thanks!\nNext: Use the "websites" command')
+        
+
+def update():
+    questions = [
+        {
+            'type': 'input',
+            'message': 'Enter Linkedin profile',
+            'name': 'Linkedin'
+        },
+    ]
+    answers = prompt(questions, style=style)
+    verification = verifyLinkedinURL(answers["Linkedin"])
+    if(verification ==None):
+        print("Error: Linkedin link not valid");
+        return;
+    # scrap 
+    obj = scraping(answers['Linkedin'])
+    op = updateBuilder(obj)
+    if(op):
+        print('Error: Repository doesn\'t exists! try the "build" command')
+    else:
+        print('Thanks!\nNext: Use the "websites" command')
 
 def websites():
     print('all websites created are:\n')

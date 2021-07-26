@@ -10,6 +10,7 @@ def createPath(path):
         os.makedirs(path, 777)
         return True
 
+
 def getConfigDir():
     if sys.platform == "win32":
         app_config_dir = os.getenv("LOCALAPPDATA")
@@ -27,29 +28,38 @@ def getConfigDir():
             json.dump({}, cf)
     return configDir
 
+
 def setENV(envs):
    with open(os.path.join(getConfigDir(), 'ResuME.json'), 'w') as f:
         json.dump(envs, f)
+
 
 def getENV(item):
     with open(os.path.join(getConfigDir(), 'ResuME.json')) as f:
         data = json.load(f)
     return data[item]
 
+
 def verifyLinkedinURL(url):
     link = re.compile('((http(s?)://)*([www])*\.|[linkedin])[linkedin/~\-]+\.[a-zA-Z0-9/~\-_,&=\?\.;]+[^\.,\s<]')
     return(link.match(url))
 
-# TODO
 
 def builder(data):
     dta = json.loads(data)
+    # check if folder exists in the Output directory or github repo
+    dest = "../Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")
+    if(os.path.isdir(dest)):
+        return True;
+    # add data.json to template folder 
     with open("../Template/data.json", "w") as outfile:
         outfile.write(data)
     github(dta['profile']['Name'])
-    # api request to deploy github link to netlify
+
 
 def github(name):
+    src = "../Template/"
+    dest = "../Output/ResuMe-"+name.replace(" ","-")
     PAT = getENV("PAT")
     Owner = getENV("owner")
     API_URL = 'https://api.github.com'
@@ -61,8 +71,6 @@ def github(name):
     # create a new repo
     requests.post(API_URL+'/user/repos',data=Payload, headers=Headers)
     # copy template folder files into output folder
-    src = "../Template/"
-    dest = "../Output/ResuMe-"+name.replace(" ","-")
     shutil.copytree(src, dest)
     # push to github
     os.chdir(r"../Output/Resume-"+name.replace(" ","-"))
@@ -71,5 +79,25 @@ def github(name):
     os.system("git commit -m 'website-generated'")
     os.system("git remote add origin https://github.com/"+Owner+"/ResuME-"+name.replace(" ","-")+".git")
     os.system("git push origin master -f")
+    
+
+def updateBuilder(data):
+    dta = json.loads(data)
+    # check if folder doesn't exists
+    dest = "../Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")
+    if(os.path.isdir(dest)==False):
+        return True;
+    # add data.json to output folder 
+    with open("../Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")+"/data.json", "w") as outfile:
+        outfile.write(data)
+    # push to github
+    os.system("git add .")
+    os.system("git commit -m 'website-updated'")
+    os.system("git push origin master -f")
 
 
+
+
+# check if folder exists in the github repo
+# repos = requests.get(API_URL+'/user/repos?visibility=public', headers=Headers)
+# print(repos)
