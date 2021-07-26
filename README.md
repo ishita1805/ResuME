@@ -1,8 +1,13 @@
-# CLI tool to generate a website from your linkedin profile
+###  ResuME - Website Generator[ResuME](https://github.com/ishita1805/ResuME)
+*A CLI Tool to generate and deploy websites using your linkedin profile*
+**Installation**
+> clone the repository
 
-## TODO
-### 1. Write installation script
-### 2. Readme files
-### 3. Deploy pipeline
-### 4. add template variations (Later)
-### 5. websites command (Later)
+**Usage**
+> cd CLI
+> python main.py --help
+
+**TODO**
+ - [ ] write Installer script 
+ - [ ] create deploy pipeline
+ - [ ] Add template variations and dynamic data
