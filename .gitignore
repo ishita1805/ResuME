@@ -1,5 +1,2 @@
-/node_wrapper/.env
-/node_wrapper/node_modules
 /CLI/config.txt
 /CLI/__pycache__
-/Scraping/helper.html
