@@ -91,9 +91,10 @@ def updateBuilder(data):
     with open("../Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")+"/data.json", "w") as outfile:
         outfile.write(data)
     # push to github
+    os.chdir(r"../Output/Resume-"+dta['profile']['Name'].replace(" ","-"))
     os.system("git add .")
     os.system("git commit -m 'website-updated'")
-    os.system("git push -f")
+    os.system("git push origin master -f")
 
 
 
