@@ -1,0 +1,1 @@
+<!-- information about using these output folders come here -->

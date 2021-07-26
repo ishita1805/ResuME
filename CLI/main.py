@@ -1,21 +1,33 @@
-import fire
-from commands import init, build, websites, welcome, update
-from utils import getENV
+import click
+import os
+from pyfiglet import Figlet
 
+plugin_folder = os.path.join(os.path.dirname(__file__), 'commands')
 
-def buildfunc():
-    if(getENV("PAT")==None or getENV("username")==None or getENV("password")==None):
-        print("please use 'init' command first");
-        return;
-    build()
+class MyCLI(click.MultiCommand):
 
+    def list_commands(self, ctx):
+        rv = []
+        for filename in os.listdir(plugin_folder):
+            if filename.endswith('.py') and filename != '__init__.py':
+                rv.append(filename[:-3])
+        rv.sort()
+        return rv
 
+    def get_command(self, ctx, name):
+        ns = {}
+        fn = os.path.join(plugin_folder, name + '.py')
+        with open(fn) as f:
+            code = compile(f.read(), fn, 'exec')
+            eval(code, ns, ns)
+        return ns['cli']
+
+cli = MyCLI(help='This tool helps you generate beautiful websites in under 5 minuites.\nRequires: Git installed on machine')
+
+def welcome():
+    f = Figlet(font='slant')
+    print(f.renderText('ResuME'))
 
 if __name__ == '__main__':
     welcome()
-    fire.Fire({
-        'init': init,
-        'build': buildfunc,
-        'list':websites,
-        'update':update
-    })
+    cli()
