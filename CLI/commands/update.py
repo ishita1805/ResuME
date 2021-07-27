@@ -28,7 +28,8 @@ def cli():
         print("Error: Linkedin link not valid");
         return;
     # scrap 
-    obj = scraping(answers['Linkedin'])
+    github = getENV('owner')
+    obj = scraping(answers['Linkedin'],github)
     op = updateBuilder(obj)
     if(op):
         print('Error: Repository doesn\'t exists! try the "build" command')

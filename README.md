@@ -11,5 +11,4 @@
 **TODO**
  - [ ] write Installation script 
  - [ ] create deploy pipeline
- - [ ] Add template variations
- - [ ] Check for missing sections & remove them from the template
+ - [ ] Add template variations (later)

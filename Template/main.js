@@ -1,8 +1,9 @@
 // dynamically add data to html file
+
+// declaring variables
 var user_name = $('#p-name')
 var user_tag = $('#p-tag')
 var about = $('#about-text')
-var education = $('#education')
 var work = $('#work')
 var projects = $('#project-cont')
 var volunteer = $('volunteer')
@@ -11,28 +12,63 @@ var footer = $('#footer')
 var git = $('#github')
 var lin = $('#linkedin')
 
+var navigation = $('#navigation')
+
+var aboutMain = $('#about')
+var education = $('#education')
+var skillsMain = $('#skills')
+var workMain = $('#experiences')
+var volunteerMain = $('#volunteering')
+
+// load json file
 fetch('data.json')
 .then(response=>response.json())
 .then((result)=>{
+    // append data to html
+
     // user profile data
     user_name.text('I am '+result['profile']['Name'])
     user_tag.text(result['profile']['Headline']+' from '+result['profile']['Location'])
     git.attr("href", result['social'][1])
     lin.attr("href", result['social'][0])
+
     // about
-    about.text(result['about'])
+    if(result['about']){ 
+        about.text(result['about'])
+        navigation.append("<li class='nav-items'><a href='#about'>About</a></li>")
+    }
+    else {
+        aboutMain.remove()
+    }
+
     // education
     if(result['education']){
         result['education'].forEach(element => {
             var edu = `<div class='education-cont'>
-                            <h3>${element['Institute']}</h3>
-                            <p><b>${element['Degree Name']}</b></p>
-                            <p>${element['Field Of Study']}</p>
-                            <p>${element['Dates attended or expected graduation']}</p>
+                            ${element['Institute']?`<h3>${element['Institute']}</h3>`:''}
+                            ${element['Degree Name']?`<p><b>${element['Degree Name']}</b></p>`:''}
+                            ${element['Field Of Study']?`<p>${element['Field Of Study']}</p>`:''}
+                            ${element['Dates attended or expected graduation']?`<p>${element['Dates attended or expected graduation']}</p>`:''}
                         </div>`
             education.append(edu)
         });
     }
+    else {
+        education.remove()
+    }
+
+    // skills
+    if(result['skills']){
+        result['skills'].forEach(element => {
+            var skill = ` <li>${element}</li>`
+            skills.append(skill)
+        });
+        navigation.append(" <li class='nav-items'><a href='#skills'>Skills</a></li>")
+    } 
+    else {
+        skillsMain.remove()
+    }
+
     // experience
     if(result['experience']){
         result['experience'].forEach(element => {
@@ -40,10 +76,10 @@ fetch('data.json')
                 var exp = `<div class='exp'>
                                 <div class='exp-bullet'></div>
                                 <div class='exp-col'>
-                                <h3>${element['Roles'][0]['Title']}</h3>
-                                <b>${element['Company Name']}</b>
-                                <p>${element['Roles'][0]['Dates Employed']}</p>
-                                <p>${element['Location']}</p>
+                                    ${element['Roles'][0]['Title']?`<h3>${element['Roles'][0]['Title']}</h3>`:''}
+                                    ${element['Company Name']?`<b>${element['Company Name']}</b>`:''}
+                                    ${element['Roles'][0]['Dates Employed']?`<p>${element['Roles'][0]['Dates Employed']}</p>`:''}
+                                    ${element['Location']?`<p>${element['Location']}</p>`:''}    
                                 </div>
                             </div>`
                 work.append(exp)
@@ -52,24 +88,21 @@ fetch('data.json')
                 var exp = `<div class='exp'>
                             <div class='exp-bullet'></div>
                             <div class='exp-col'>
-                            <h3>${element['Role']}</h3>
-                            <b>${element['Company Name']}</b>
-                            <p>${element['Dates Employed']}</p>
-                            <p>${element['Location']}</p>
+                                    ${element['Role']?`<h3>${element['Role']}</h3>`:''}
+                                    ${element['Company Name']?`<b>${element['Company Name']}</b>`:''}
+                                    ${element['Dates Employed']?`<p>${element['Dates Employed']}</p>`:''}
+                                    ${element['Location']?`<p>${element['Location']}</p>`:''}    
                             </div>
                         </div>`
                 work.append(exp)
             }
-            
         });
+        navigation.append(" <li class='nav-items'><a href='#experiences'>Work</a></li>")
     }
-    // skills
-    if(result['skills']){
-        result['skills'].forEach(element => {
-            var skill = ` <li>${element}</li>`
-            skills.append(skill)
-        });
+    else {
+        workMain.remove()
     }
+
     // projects
     github_id = result['social'][1].replace('https://github.com/','')
     fetch(`https://api.github.com/users/${github_id}/repos`)
@@ -88,25 +121,32 @@ fetch('data.json')
                 projects.append(project)
             }
         });
+        navigation.append("<li class='nav-items'><a href='#projects'>Projects</a></li>")
     })
+    
     // volunteering
     if(result['volunteering']){
         result['volunteering'].forEach(element => {
             var volun = `<div class='exp'>
                             <div class='exp-bullet'></div>
                             <div class='exp-col'>
-                            <h3>${element['Title']}</h3>
-                            <b>${element['Company Name']}</b>
-                            <p>${element['Dates volunteered']}</p>
-                            <p>${element['Cause']}: ${element['Description']}</p>
+                                ${element['Title']?`<h3>${element['Title']}</h3>`:''}
+                                ${element['Company Name']?`<b>${element['Company Name']}</b>`:''}
+                                ${element['Dates volunteered']?`<p>${element['Dates volunteered']}</p>`:''}
+                                ${element['Description']?`<p>${element['Cause']}: ${element['Description']}</p>`:''}
                             </div>
                         </div>`
             volunteer.append(volun)
         });
+        navigation.append("<li class='nav-items'><a href='#volunteering'>Volunteering</a></li>")
     }
+    else {
+        volunteerMain.remove()
+    }
+
     // footer
     footer.text('Made using ResuME - Website Generator')
 })
 
 // TODO
-// 1. Check for missing sections/divs and remove them from the website
+// 1. Check for missing divs and remove them from the website
