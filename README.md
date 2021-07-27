@@ -9,7 +9,6 @@
 > python main.py --help
 
 **TODO**
- - [ ] write Installation script 
  - [ ] delete website command
  - [ ] add custom domain command (later)
  - [ ] Add template variations (later)
