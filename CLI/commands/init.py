@@ -1,6 +1,7 @@
 import click
 from utils import setENV
 from PyInquirer import style_from_dict, Token, prompt
+from colorama import Fore
 
 style = style_from_dict({
     Token.QuestionMark: '#ff2b73 bold',
@@ -13,7 +14,7 @@ style = style_from_dict({
 @click.command()
 
 def cli():
-    """Sets up the CLI with your credentials"""
+    """Sets up your credentials"""
     questions = [
         {
             'type': 'input',
@@ -39,4 +40,4 @@ def cli():
     ]
     answers = prompt(questions, style=style)
     setENV(answers)
-    print('Thanks! \nNext: Use the "build" command')
+    print(Fore.GREEN+'Thanks! \nNext: Use the "build" command')

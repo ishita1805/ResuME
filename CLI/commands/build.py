@@ -2,6 +2,7 @@ import click
 from utils import getENV, builder, verifyLinkedinURL
 from scraping import scraping
 from PyInquirer import style_from_dict, Token, prompt
+from colorama import Fore
 
 
 
@@ -20,7 +21,7 @@ style = style_from_dict({
 def cli():
     """Generates a new website using your linkedin profile"""
     if(getENV("PAT")==None or getENV("username")==None or getENV("password")==None):
-        print("please use 'init' command first");
+        print(Fore.RED+"Error: Please use 'init' command first");
         return;
     build()
 
@@ -37,51 +38,20 @@ def build():
             'message': 'Enter Github username',
             'name': 'Github'
         },
-        # {
-        #     'type': 'input',
-        #     'message': 'Do you want to use a custom domain? (yes/no)',
-        #     'name': 'domain'
-        # },
     ]
 
     answers = prompt(questions, style=style)
-
-    # if("y" in answers['domain'].lower()):
-    #     dns_params = dns()
-    #     print(answers)
-    #     print(dns_params)
     
     verification = verifyLinkedinURL(answers["Linkedin"])
     if(verification ==None):
-        print("Error: Linkedin link not valid");
+        print(Fore.RED+"Error: Linkedin link not valid");
         return;
     # Scrape
     obj = scraping(answers['Linkedin'],answers['Github'])
     # function to build website and push website to github
     op = builder(obj)
     if(op):
-        print('Error: Repository already exists! try the "update" command')
+        print(Fore.RED+'Error: Repository already exists! try the "update" command')
     else:
-        print('Thanks!\nNext: Use the "websites" command')
+        print(Fore.GREEN+'Thanks!\nNext: Use the "websites" command')
 
-
-# def dns():
-#     questions = [
-#         {
-#             'type': 'input',
-#             'message': 'Enter xxxx id:',
-#             'name': 'Domain_ID'
-#         },
-#         {
-#             'type': 'password',
-#             'message': 'Enter xxxx password:',
-#             'name': 'Domain_PASS'
-#         },
-#         {
-#             'type': 'input',
-#             'message': 'Enter xxxx domain name:',
-#             'name': 'Domain'
-#         }
-#     ]
-#     answers = prompt(questions, style=style)
-#     return answers

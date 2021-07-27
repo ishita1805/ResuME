@@ -10,5 +10,7 @@
 
 **TODO**
  - [ ] write Installation script 
- - [ ] create deploy pipeline
+ - [ ] delete website command
+ - [ ] add custom domain command (later)
  - [ ] Add template variations (later)
+

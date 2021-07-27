@@ -1,7 +1,7 @@
 import click
-from utils import getENV, deployer
 from PyInquirer import style_from_dict, Token, prompt
-from colorama import Fore
+
+
 
 style = style_from_dict({
     Token.QuestionMark: '#ff2b73 bold',
@@ -12,24 +12,19 @@ style = style_from_dict({
 })
 
 
+
 @click.command()
 
 def cli():
-    """Deploys website to github pages, auto deploys on updates"""
-    if(getENV("PAT")==None or getENV("username")==None or getENV("password")==None):
-        print("please use 'init' command first");
-        return;
-    deploy()
-
-def deploy():
+    """Deletes the specified website"""
     questions = [
         {
             'type': 'input',
-            'message': 'Name of the github repository to be deployed',
+            'message': 'Enter name of repository to be deleted',
             'name': 'repo'
         },
     ]
     ans = prompt(questions, style=style)
     repo = ans['repo']
-    msg = deployer(repo)
-    print(Fore.GREEN+msg)
+    # delete this repo from output directory
+    # delete this repo from github

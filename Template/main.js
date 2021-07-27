@@ -116,7 +116,7 @@ fetch('data.json')
                                     <p class='project-text'>
                                         ${element.description}
                                     </p>
-                                    <a href='${element.url}'><img class='icon' src='./assets/github.png'/></a>
+                                    <a href='${element.html_url}' target='__blank'><img class='icon' src='./assets/github.png'/></a>
                                 </div>`
                 projects.append(project)
             }

@@ -67,7 +67,7 @@ body{
 .nav li.active a{
     color:var(--nav-active-purple) !important;
     transition: 0.5s;
-    font-weight:500;
+    font-weight:600;
 }
 .nav-items a{
     color:#969696 !important;
@@ -372,11 +372,22 @@ footer span{
         width:60vw;
     }
 }
+
 @media screen and (max-width:770px){
     .nav-custom-bg{
         border-bottom:2px solid var(--nav-border-purple);
     }
 }
+@media (max-width:767px) {
+    .navbar-header {
+      display:flex;
+    }
+    .navbar-toggle {
+      order:0;
+      margin-left:15px;
+      margin-right:0;
+    }
+  }
 @media screen and (max-width:700px){
     .image-landing{
         display:none;

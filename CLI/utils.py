@@ -106,7 +106,8 @@ def deployer(repo):
     os.system('git checkout -b gh-pages')
     # modify readme file
     f = open('README.md','a')
-    f.write('\n**your ResuMe is deployed at:** https://ishita1805.github.io/'+repo)
+    f.write('\n**your ResuMe is deployed at:** https://ishita1805.github.io/'+repo+'\n')
+    f.close()
     # push new branch to github
     os.system("git add .")
     os.system("git commit -m 'website-deployed'")
