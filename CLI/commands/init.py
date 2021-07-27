@@ -27,12 +27,12 @@ def cli():
         },
         {
             'type': 'input',
-            'message': 'Enter your netlify API Token',
+            'message': 'Enter your NETLIFY_AUTH_TOKEN',
             'name': 'username'
         },
         {
             'type': 'password',
-            'message': 'Enter your netlify API Secret',
+            'message': 'Enter your NETLIFY_SITE_ID',
             'name': 'password'
         },
         

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
     <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
     <link rel="stylesheet" href="./style.css"/>
 </head>
 
@@ -19,6 +20,11 @@
 <body data-spy="scroll" data-target="#navbar">
     <nav id="navbar" class='navbar-inverse navbar-fixed-top nav-custom-bg'>
         <div class='container-fluid'>
+             <div class="collapse navbar-collapse navbar-left" id='menu'>
+                <ul id='navigation' class='nav navbar-nav nav-cont'>
+                    <li class='nav-items'> <a href="#home">Home</a></li>
+                </ul>
+            </div>
             
             <div class='navbar-header navbar-left'>
                 <button class='navbar-toggle custom-hamburger' data-toggle='collapse' data-target='#menu'>
@@ -28,11 +34,7 @@
                 </button>
                 <!-- <img src='./assets/Logo.svg' class='nav-image'/> -->
             </div>
-            <div class="collapse navbar-collapse navbar-left" id='menu'>
-                <ul id='navigation' class='nav navbar-nav nav-cont'>
-                    <li class='nav-items'> <a href="#home">Home</a></li>
-                </ul>
-            </div>
+        </div>
     </nav>
       
     <div id='home'>

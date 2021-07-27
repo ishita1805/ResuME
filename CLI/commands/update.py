@@ -21,6 +21,11 @@ def cli():
             'message': 'Enter Linkedin profile',
             'name': 'Linkedin'
         },
+        {
+            'type': 'input',
+            'message': 'Enter Github username',
+            'name': 'Github'
+        },
     ]
     answers = prompt(questions, style=style)
     verification = verifyLinkedinURL(answers["Linkedin"])
@@ -28,8 +33,7 @@ def cli():
         print("Error: Linkedin link not valid");
         return;
     # scrap 
-    github = getENV('owner')
-    obj = scraping(answers['Linkedin'],github)
+    obj = scraping(answers['Linkedin'],answers['Github'])
     op = updateBuilder(obj)
     if(op):
         print('Error: Repository doesn\'t exists! try the "build" command')

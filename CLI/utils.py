@@ -4,6 +4,9 @@ import json
 import sys
 import requests
 import shutil
+from base64 import b64encode
+from nacl import encoding, public
+
 
 def createPath(path):
     if not os.path.exists(path):
@@ -95,6 +98,29 @@ def updateBuilder(data):
     os.system("git add .")
     os.system("git commit -m 'website-updated'")
     os.system("git push origin master -f")
+
+
+def deployer(repo):
+    # change directory and create a new branch
+    os.chdir(r"../Output/"+repo)
+    os.system('git checkout -b gh-pages')
+    # modify readme file
+    f = open('README.md','a')
+    f.write('\n**your ResuMe is deployed at:** https://ishita1805.github.io/'+repo)
+    # push new branch to github
+    os.system("git add .")
+    os.system("git commit -m 'website-deployed'")
+    os.system("git push origin gh-pages")
+
+    return 'https://ishita1805.github.io/ResuME-Ishita-Kabra/'
+
+
+
+
+
+
+
+
 
 
 

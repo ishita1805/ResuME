@@ -34,25 +34,29 @@ def build():
         },
         {
             'type': 'input',
-            'message': 'Do you want to use a custom domain? (yes/no)',
-            'name': 'domain'
+            'message': 'Enter Github username',
+            'name': 'Github'
         },
+        # {
+        #     'type': 'input',
+        #     'message': 'Do you want to use a custom domain? (yes/no)',
+        #     'name': 'domain'
+        # },
     ]
 
     answers = prompt(questions, style=style)
 
-    if("y" in answers['domain'].lower()):
-        dns_params = dns()
-        print(answers)
-        print(dns_params)
+    # if("y" in answers['domain'].lower()):
+    #     dns_params = dns()
+    #     print(answers)
+    #     print(dns_params)
     
     verification = verifyLinkedinURL(answers["Linkedin"])
     if(verification ==None):
         print("Error: Linkedin link not valid");
         return;
     # Scrape
-    github = getENV('owner')
-    obj = scraping(answers['Linkedin'],github)
+    obj = scraping(answers['Linkedin'],answers['Github'])
     # function to build website and push website to github
     op = builder(obj)
     if(op):
@@ -61,23 +65,23 @@ def build():
         print('Thanks!\nNext: Use the "websites" command')
 
 
-def dns():
-    questions = [
-        {
-            'type': 'input',
-            'message': 'Enter xxxx id:',
-            'name': 'Domain_ID'
-        },
-        {
-            'type': 'password',
-            'message': 'Enter xxxx password:',
-            'name': 'Domain_PASS'
-        },
-        {
-            'type': 'input',
-            'message': 'Enter xxxx domain name:',
-            'name': 'Domain'
-        }
-    ]
-    answers = prompt(questions, style=style)
-    return answers
+# def dns():
+#     questions = [
+#         {
+#             'type': 'input',
+#             'message': 'Enter xxxx id:',
+#             'name': 'Domain_ID'
+#         },
+#         {
+#             'type': 'password',
+#             'message': 'Enter xxxx password:',
+#             'name': 'Domain_PASS'
+#         },
+#         {
+#             'type': 'input',
+#             'message': 'Enter xxxx domain name:',
+#             'name': 'Domain'
+#         }
+#     ]
+#     answers = prompt(questions, style=style)
+#     return answers
