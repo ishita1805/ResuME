@@ -2,14 +2,11 @@
 *A CLI Tool to generate and deploy websites using your linkedin profile*
 
 **Installation**
-> clone the repository
 
 **Usage**
-> cd CLI
-> python main.py --help
 
 **TODO**
- - [ ] delete website command
+ - [ ] Create setup.py
+ - [ ] Deploy to pypi.org
  - [ ] add custom domain command (later)
  - [ ] Add template variations (later)
-

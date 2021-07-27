@@ -32,4 +32,4 @@ def deploy():
     ans = prompt(questions, style=style)
     repo = ans['repo']
     msg = deployer(repo)
-    print(Fore.GREEN+msg)
+    print(Fore.GREEN+'Your ResuMe is deployed at: '+msg)

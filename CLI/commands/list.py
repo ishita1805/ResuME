@@ -13,6 +13,6 @@ def cli():
         print(Fore.GREEN+'No ResuMe\'s Available')
     else:
         print(Fore.GREEN+'Available ResuMe\'s:')
-        for i in range(len(list)):
+        for i in range(1,len(list)):
             print(Fore.GREEN+list[i])
     

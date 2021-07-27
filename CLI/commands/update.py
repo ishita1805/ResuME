@@ -2,6 +2,7 @@ import click
 from utils import getENV, updateBuilder, verifyLinkedinURL
 from scraping import scraping
 from PyInquirer import style_from_dict, Token, prompt
+from colorama import Fore
 
 style = style_from_dict({
     Token.QuestionMark: '#ff2b73 bold',
@@ -30,12 +31,12 @@ def cli():
     answers = prompt(questions, style=style)
     verification = verifyLinkedinURL(answers["Linkedin"])
     if(verification ==None):
-        print("Error: Linkedin link not valid");
+        print(Fore.RED+"Error: Linkedin link not valid");
         return;
     # scrap 
     obj = scraping(answers['Linkedin'],answers['Github'])
     op = updateBuilder(obj)
     if(op):
-        print('Error: Repository doesn\'t exists! try the "build" command')
+        print(Fore.RED+'Error: Repository doesn\'t exists! try the "build" command')
     else:
-        print('Thanks!\nNext: Use the "websites" command')
+        print(Fore.GREEN+'Thanks!\nNext: Use the "websites" command')
