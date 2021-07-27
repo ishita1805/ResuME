@@ -1,48 +1,90 @@
 {
     "profile": {
-        "Name": "Yayathi Datta",
-        "Headline": "Full-stack Developer",
-        "Location": "Hyderabad, Telangana, India"
+        "Name": "Ishita Kabra",
+        "Headline": "Student Developer | Projects and Events Head at TEC-VIT",
+        "Location": "Delhi, India "
     },
+    "about": "Skilled in Responsive Web Design, Digital Image Processing, python and Web Development. Strong engineering professional, pursuing Bachelor of Technology - BTech focused in ECE IOT from Vellore Institute of Technology.",
     "education": [
         {
             "Institute": "Vellore Institute of Technology",
-            "Degree Name": "BTech - Bachelor of Technology",
-            "Field Of Study": "internet of things",
+            "Degree Name": "Bachelor of Technology - BTech",
+            "Field Of Study": "ECE IOT",
             "Dates attended or expected graduation": "2018 \u2013 2022"
         }
     ],
     "experience": [
         {
-            "Role": "Full-stack Developer",
-            "Dates Employed": "Nov 2020 \u2013 Apr 2021",
-            "Employment Duration": "6 mos",
-            "Location": "Mumbai, Maharashtra, India",
-            "Company Name": "Growth Source Financial Technologies Private Limited"
+            "Company Name": "The Electronics Club, VIT",
+            "Roles": [
+                {
+                    "Title": "Projects and Events Head",
+                    "Dates Employed": "Dec 2020 \u2013 Present",
+                    "Employment Duration": "8 mos",
+                    "Location": "Vellore, Tamil Nadu, India"
+                },
+                {
+                    "Title": "The Electronics Club, VIT",
+                    "Dates Employed": "Dec 2018 \u2013 Present",
+                    "Employment Duration": "2 yrs 8 mos",
+                    "Location": "Vellore, Tamil Nadu"
+                },
+                {
+                    "Title": "Core Committee Member",
+                    "Dates Employed": "Sep 2019 \u2013 Present",
+                    "Employment Duration": "1 yr 11 mos",
+                    "Location": "Vellore, Tamil Nadu"
+                },
+                {
+                    "Title": "Speaker at Sensored (Annual workshop on IoT and Sensors)",
+                    "Dates Employed": "Sep 2019",
+                    "Employment Duration": "1 mo",
+                    "Location": "Vellore, Tamil Nadu"
+                }
+            ]
         },
         {
-            "Role": "Full Stack Developer",
-            "Dates Employed": "Sep 2020 \u2013 Oct 2020",
-            "Employment Duration": "2 mos",
-            "Location": "New Delhi, Delhi, India",
+            "Role": "MERN Stack Trainer",
+            "Dates Employed": "Mar 2021 \u2013 May 2021",
+            "Employment Duration": "3 mos",
             "Company Name": "Codebugged AI"
         },
         {
-            "Role": "Web Developer",
-            "Dates Employed": "May 2020 \u2013 Sep 2020",
-            "Employment Duration": "5 mos",
-            "Location": "India",
-            "Company Name": "ProjectFofficial"
+            "Role": "Product Development Lead",
+            "Dates Employed": "Mar 2021 \u2013 May 2021",
+            "Employment Duration": "3 mos",
+            "Location": "Mumbai, Maharashtra, India",
+            "Company Name": "HEED India"
+        },
+        {
+            "Role": "Full stack web developer",
+            "Dates Employed": "Nov 2020 \u2013 Apr 2021",
+            "Employment Duration": "6 mos",
+            "Location": "Gurugram, Haryana, India",
+            "Company Name": "Umbrette"
+        },
+        {
+            "Role": "Full Stack Web Developer",
+            "Dates Employed": "Aug 2020 \u2013 Oct 2020",
+            "Employment Duration": "3 mos",
+            "Company Name": "Codebugged AI"
         }
     ],
     "skills": [
-        "JavaScript",
         "Node.js",
-        "Data Structures",
+        "React.js",
+        "Web Development",
+        "Responsive Web Design",
         "C (Programming Language)",
-        "Python (Programming Language)",
-        "MERN Stack",
-        "Amazon EC2",
-        "Full-Stack Development"
+        "Arduino",
+        "Microsoft Azure",
+        "JavaScript",
+        "Full-Stack Development",
+        "Digital Image Processing",
+        "OpenCV"
+    ],
+    "social": [
+        "https://www.linkedin.com/in/ishita-kabra-3b305818b/",
+        "https://github.com/ishita1805"
     ]
 }

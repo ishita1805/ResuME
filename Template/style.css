@@ -117,6 +117,10 @@ body{
     font-size:18px;
     font-weight:300;
 }
+.icon{
+    height:3vh;
+    width:auto;
+}
 .image-landing{
     margin-top:10vh;
     height:60vh;
@@ -138,6 +142,7 @@ body{
 }
 #about p{
     margin:2vh 0;
+    font-size:16px;
 }
 /* Education */
 .education{
@@ -191,6 +196,7 @@ body{
     width:50%;
     list-style:disc;
     margin:1vh 0;
+    font-size:16px;
     padding:0;
 }
 /* work Page */
@@ -308,15 +314,23 @@ body{
     display:flex;
     flex-direction:row;
     justify-content: space-between;
-    width:80%;
+    width:100%;
     flex-wrap: wrap;
 }
 .project-card{
     padding:2vh;
     margin-bottom:5vh;
-    width:20vw;
+    width:27vw;
     border-radius:8px;
     border:solid 2px var(--border-purple);
+}
+.project-card b{
+    font-size:18px;
+}
+.project-card a{
+   text-decoration:underline;
+   color:white;
+   font-weight:600;
 }
 .project-text{
     color:var(--nav-active-purple);
@@ -353,6 +367,11 @@ footer span{
         margin-right:2vh;
     }
 }
+@media screen and (max-width:800px){
+    .project-card{
+        width:60vw;
+    }
+}
 @media screen and (max-width:770px){
     .nav-custom-bg{
         border-bottom:2px solid var(--nav-border-purple);
@@ -364,6 +383,9 @@ footer span{
     }
     .exp-image{
         display:none;
+    }
+    .project-card{
+        width:80vw;
     }
 }
 @media screen and (max-width:500px){

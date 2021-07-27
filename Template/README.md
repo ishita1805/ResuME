@@ -6,4 +6,9 @@
 - If you do wish to delete the website, use the delete command provided in the CLI
 
 **What if i have already deleted the local folder?**
+
 Please delete the corresponding repository from your github account
+
+**checkout the CLI**
+
+<a href='ishita1805/ResuME-Ishita-Kabra' target='__blank'>ResuME</a>

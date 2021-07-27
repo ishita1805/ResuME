@@ -20,13 +20,13 @@
     <nav id="navbar" class='navbar-inverse navbar-fixed-top nav-custom-bg'>
         <div class='container-fluid'>
             
-            <div class='navbar-header navbar-right'>
+            <div class='navbar-header navbar-left'>
                 <button class='navbar-toggle custom-hamburger' data-toggle='collapse' data-target='#menu'>
                     <span class='icon-bar'></span>
                     <span class='icon-bar'></span>
                     <span class='icon-bar'></span>
                 </button>
-                <img src='./assets/Logo.svg' class='nav-image'/>
+                <!-- <img src='./assets/Logo.svg' class='nav-image'/> -->
             </div>
             <div class="collapse navbar-collapse navbar-left" id='menu'>
                 <ul class='nav navbar-nav nav-cont'>
@@ -38,54 +38,34 @@
                     <li class='nav-items'><a href="#volunteering">Volunteering</a></li>
                 </ul>
             </div>
-        </nav>
+    </nav>
       
-    </div>
-
     <div id='home'>
         <div class='column'>
             <p>Hey There!</p>
-            <h1>I am Yayathi Datta</h1>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+            <h1 id='p-name'>I am </h1>
+            <span id='p-tag'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+            <br/><br/>
+            <div class='row container-fluid'>
+                <a href='#' target='__blank' id='github'><img class='icon' src='./assets/github.png'/></a>&ensp;
+                <a href='#' target='__blank' id='linkedin'><img class='icon' src='./assets/linkedin.png'/></a>
+            </div>
         </div>
         <img src='assets/landing.svg' class='image-landing'/>
     </div>
 
     <div id='about'>
         <h1>About Me</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Quam morbi egestas faucibus tincidunt morbi ipsum habitasse 
-            ultricies at. A, sed augue vestibulum dis tellus diam. 
-            Porttitor amet commodo elementum nunc volutpat volutpat 
-            ultricies in bibendum. Egestas sed egestas ipsum dignissim 
-            quam viverra et. Quis nullam dignissim vitae feugiat sed libero. 
-            Ut molestie elementum vitae lorem odio odio suspendisse amet. 
-            Adipiscing in senectus risus dignissim pellentesque proin. 
-            Aliquet in ornare ornare viverra eget. Aliquet suspendisse 
-            erat id nisl pellentesque netus eleifend condimentum sit.</p>
+        <p id='about-text'></p>
     </div>
 
-    <div class='education'>
+    <div id='education' class='education'>
         <h4>My Education</h4>
-        <div class='education-cont'>
-            <h3>Full-stack Developer</h3>
-            <p><b>Growth Source Financial Technologies Private Limited</b></p>
-            <p>Nov 2020 - Apr 2021</p>
-            <p>Mumbai, Maharashtra, India</p>
-        </div>
     </div>
 
     <div id='skills'>
         <h1>My Skills</h1>
-        <ul class='skils-container'>
-            <li>JavaScript</li>
-            <li>Node.js</li>
-            <li>Data Structures</li>
-            <li>C (Programming Language)</li>
-            <li>Python (Programming Language)</li>
-            <li>MERN Stack</li>
-            <li>Amazon EC2</li>
-            <li>Full-Stack Development</li>
+        <ul id='skills-cont' class='skils-container'>
         </ul>
     </div>
 
@@ -93,36 +73,7 @@
         <div class='exp-row'>
             <div>
                 <h1>Work Experience</h1>
-                <div class='exp-cont'>
-                    <div class='exp'>
-                        <div class='exp-bullet'></div>
-                        <div class='exp-col'>
-                        <h3>Full-stack Developer</h3>
-                        <b>Growth Source Financial Technologies Private Limited</b>
-                        <p>Nov 2020 - Apr 2021  (6 mos)</p>
-                        <p>Mumbai, Maharashtra, India</p>
-                        </div>
-                    </div>
-
-                    <div class='exp'>
-                        <div class='exp-bullet'></div>
-                        <div class='exp-col'>
-                        <h3>Full-stack Developer</h3>
-                        <b>Growth Source Financial Technologies Private Limited</b>
-                        <p>Nov 2020 - Apr 2021  (6 mos)</p>
-                        <p>Mumbai, Maharashtra, India</p>
-                        </div>
-                    </div>
-
-                    <div class='exp'>
-                        <div class='exp-bullet'></div>
-                        <div class='exp-col'>
-                        <h3>Full-stack Developer</h3>
-                        <b>Growth Source Financial Technologies Private Limited</b>
-                        <p>Nov 2020 - Apr 2021  (6 mos)</p>
-                        <p>Mumbai, Maharashtra, India</p>
-                        </div>
-                    </div>
+                <div id='work' class='exp-cont'>
                 </div>
             </div>
             <img src='assets/work.svg' class='exp-image'/>
@@ -131,69 +82,19 @@
 
     <div id='projects'>
         <h1>My Projects</h1>
-        <div class='projects-cont'>
-            <div class='project-card'>
-                <b>Project Title</b>
-                <p>Project Subtitle</p>
-                <p class='project-text'>
-                    Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Nec fringilla ut interdum amet integer feugiat.
-                </p>
-            </div>
-
-            <div class='project-card'>
-                <b>Project Title</b>
-                <p>Project Subtitle</p>
-                <p class='project-text'>
-                    Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Nec fringilla ut interdum amet integer feugiat.
-                </p>
-            </div>
-
-            <div class='project-card'>
-                <b>Project Title</b>
-                <p>Project Subtitle</p>
-                <p class='project-text'>
-                    Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Nec fringilla ut interdum amet integer feugiat.
-                </p>
-            </div>
-
-            <div class='project-card'>
-                <b>Project Title</b>
-                <p>Project Subtitle</p>
-                <p class='project-text'>
-                    Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Nec fringilla ut interdum amet integer feugiat.
-                </p>
-            </div>
+        <div id='project-cont' class='projects-cont'>
         </div>
     </div>
 
     <div id='volunteering'>
         <h1>Volunteering Experience</h1>
-        <div class='exp-cont'>
-            <div class='exp'>
-                <div class='exp-bullet'></div>
-                <div class='exp-col'>
-                <h3>Full-stack Developer</h3>
-                <b>Growth Source Financial Technologies Private Limited</b>
-                <p>Nov 2020 - Apr 2021  (6 mos)</p>
-                <p>Mumbai, Maharashtra, India</p>
-                </div>
-            </div>
-
-            <div class='exp'>
-                <div class='exp-bullet'></div>
-                <div class='exp-col'>
-                <h3>Full-stack Developer</h3>
-                <b>Growth Source Financial Technologies Private Limited</b>
-                <p>Nov 2020 - Apr 2021  (6 mos)</p>
-                <p>Mumbai, Maharashtra, India</p>
-                </div>
-            </div>
+        <div id='volunteer' class='exp-cont'>
         </div>
     </div>
 
     <footer>
         <img src='assets/Logoblack.svg' class='nav-image'/>
-        <span>Made using ResuME - Website Generator</span>
+        <span id='footer'></span>
     </footer>
   
     

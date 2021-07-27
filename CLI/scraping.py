@@ -1,20 +1,21 @@
 # importing libraries
-import requests
 from time import sleep
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
-import chromedriver_binary
+from chromedriver_py import binary_path
 import json
 
 # accessing the browser
 
 
-def scraping(url):
+def scraping(url,github):
     options = webdriver.ChromeOptions()
     options.add_argument("--incognito")
     caps = options.to_capabilities()
-    browser = webdriver.Chrome(desired_capabilities=caps)
+    browser = webdriver.Chrome(executable_path=binary_path)
+    browser.get("http://www.python.org")
+    assert "Python" in browser.title
     browser.maximize_window()
     browser.get('https://www.linkedin.com/uas/login')
     files = open('config.txt')
@@ -213,5 +214,11 @@ def scraping(url):
     except Exception as e:
         pass
 
+    # ADD SOCIAL
+    data["social"] = [
+        url, #linkedin
+       'https://github.com/'+github, #github
+    ]
+   
     json_object = json.dumps(data, indent=4)
     return(json_object)

@@ -9,6 +9,7 @@
 > python main.py --help
 
 **TODO**
- - [ ] write Installer script 
+ - [ ] write Installation script 
  - [ ] create deploy pipeline
- - [ ] Add template variations and dynamic data
+ - [ ] Add template variations
+ - [ ] Check for missing sections & remove them from the template

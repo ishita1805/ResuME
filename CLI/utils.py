@@ -52,7 +52,7 @@ def builder(data):
     if(os.path.isdir(dest)):
         return True;
     # add data.json to template folder 
-    with open("../Template/data.js", "w") as outfile:
+    with open("../Template/data.json", "w") as outfile:
         outfile.write(data)
     github(dta['profile']['Name'])
 
@@ -88,7 +88,7 @@ def updateBuilder(data):
     if(os.path.isdir(dest)==False):
         return True;
     # add data.json to output folder 
-    with open("../Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")+"/data.js", "w") as outfile:
+    with open("../Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")+"/data.json", "w") as outfile:
         outfile.write(data)
     # push to github
     os.chdir(r"../Output/Resume-"+dta['profile']['Name'].replace(" ","-"))

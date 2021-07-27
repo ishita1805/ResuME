@@ -51,7 +51,8 @@ def build():
         print("Error: Linkedin link not valid");
         return;
     # Scrape
-    obj = scraping(answers['Linkedin'])
+    github = getENV('owner')
+    obj = scraping(answers['Linkedin'],github)
     # function to build website and push website to github
     op = builder(obj)
     if(op):
