@@ -1,6 +1,6 @@
 import click
 import os
-from pyfiglet import Figlet
+from colorama import Fore
 
 plugin_folder = os.path.join(os.path.dirname(__file__), 'commands')
 
@@ -22,12 +22,9 @@ class MyCLI(click.MultiCommand):
             eval(code, ns, ns)
         return ns['cli']
 
-cli = MyCLI(help='This tool helps you generate beautiful websites in under 5 minuites.\nRequires: Git installed on machine')
+cli = MyCLI(help=Fore.GREEN+'This tool helps you generate beautiful websites in under 5 minuites. '+Fore.LIGHTRED_EX+'Requirement: Git CLI installed and authenticated on your device.'
+            +Fore.CYAN+' Note: Please enter github details only for the account authenticated on your git CLI'+Fore.WHITE)
 
-def welcome():
-    f = Figlet(font='slant')
-    print(f.renderText('ResuME'))
 
 if __name__ == '__main__':
-    welcome()
     cli()

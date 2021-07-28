@@ -1,12 +1,6 @@
 ### [ResuME - Website Generator ](https://github.com/ishita1805/ResuME)
-*A CLI Tool to generate and deploy websites using your linkedin profile*
+*A CLI Tool to generate and deploy beautiful websites in under 5 minuites*
 
 **Installation**
 
 **Usage**
-
-**TODO**
- - [ ] Create setup.py
- - [ ] Deploy to pypi.org
- - [ ] add custom domain command (later)
- - [ ] Add template variations (later)

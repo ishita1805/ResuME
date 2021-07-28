@@ -1,5 +1,5 @@
 import click
-from utils import setENV
+from utils import setENV, welcome
 from PyInquirer import style_from_dict, Token, prompt
 from colorama import Fore
 
@@ -15,6 +15,7 @@ style = style_from_dict({
 
 def cli():
     """Sets up your credentials"""
+    welcome()
     questions = [
         {
             'type': 'input',
@@ -26,17 +27,6 @@ def cli():
             'message': 'Enter your github PAT',
             'name': 'PAT'
         },
-        {
-            'type': 'input',
-            'message': 'Enter your NETLIFY_AUTH_TOKEN',
-            'name': 'username'
-        },
-        {
-            'type': 'password',
-            'message': 'Enter your NETLIFY_SITE_ID',
-            'name': 'password'
-        },
-        
     ]
     answers = prompt(questions, style=style)
     setENV(answers)

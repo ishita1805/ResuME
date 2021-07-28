@@ -2,11 +2,10 @@ import click
 import requests
 import shutil
 import os
-from utils import getENV
+from utils import getENV, welcome
 from PyInquirer import style_from_dict, Token, prompt
 from colorama import Fore
 import stat
-import subprocess
 from os import path
 
 
@@ -24,6 +23,10 @@ style = style_from_dict({
 
 def cli():
     """Deletes the specified website"""
+    welcome()
+    if(getENV("PAT")==None or getENV("username")==None or getENV("password")==None):
+        print(Fore.RED+"Error: please use 'init' command first"+Fore.WHITE);
+        return;
     questions = [
         {
             'type': 'input',
@@ -41,7 +44,7 @@ def cli():
         if(list[i] == repo):
             check = True
     if(check == False):
-        print(Fore.RED+'Error: ResuMe not found')
+        print(Fore.RED+'Error: ResuMe not found'+Fore.WHITE)
         return;
     # delete this repo from output directory
     for root, dirs, files in os.walk(repo):  
@@ -63,6 +66,6 @@ def cli():
 
    
 
-    print(Fore.GREEN+'\nResuMe Deleted')
+    print(Fore.GREEN+'\nResuMe Deleted'+Fore.WHITE)
 
    

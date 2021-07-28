@@ -1,0 +1,85 @@
+{
+    "profile": {
+        "Name": "Anushrav Singhal",
+        "Headline": "VP Design at C4Projects",
+        "Location": "Tamil Nadu, India"
+    },
+    "about": "Graphic & UI/UX designer, VP Design at C4Projects",
+    "education": [
+        {
+            "Institute": "Vellore Institute of Technology",
+            "Degree Name": "Bachelor of Technology - BTech",
+            "Field Of Study": "Electronics and communications with specialization in Internet of Things",
+            "Dates attended or expected graduation": "2018 \u2013 2022"
+        },
+        {
+            "Institute": "Modern Delhi Public School - India",
+            "Degree Name": "12th",
+            "Dates attended or expected graduation": "2014 \u2013 2018"
+        }
+    ],
+    "experience": [
+        {
+            "Company Name": "C4Projects",
+            "Roles": [
+                {
+                    "Title": "VP Design",
+                    "Dates Employed": "Aug 2019 \u2013 Present",
+                    "Employment Duration": "2 yrs",
+                    "Location": "Vellore Area, India"
+                },
+                {
+                    "Title": "Design Team Lead",
+                    "Dates Employed": "Aug 2019 \u2013 Present",
+                    "Employment Duration": "2 yrs",
+                    "Location": "Vellore Area, India"
+                },
+                {
+                    "Title": "Speaker at Global Developers' Summit",
+                    "Dates Employed": "May 2020",
+                    "Employment Duration": "1 mo"
+                }
+            ]
+        },
+        {
+            "Role": "Graphic Designer",
+            "Dates Employed": "Dec 2019 \u2013 Mar 2021",
+            "Employment Duration": "1 yr 4 mos",
+            "Location": "Vellore Area, India",
+            "Company Name": "TEDx VIT Vellore"
+        },
+        {
+            "Role": "Product Design Intern",
+            "Dates Employed": "Apr 2020 \u2013 Aug 2020",
+            "Employment Duration": "5 mos",
+            "Location": "Vellore, Tamil Nadu",
+            "Company Name": "Humourbaba.com"
+        },
+        {
+            "Role": "Graphic Designer",
+            "Dates Employed": "Dec 2019 \u2013 Aug 2020",
+            "Employment Duration": "9 mos",
+            "Location": "Vellore Area, India",
+            "Company Name": "VIT Dramatics Club"
+        }
+    ],
+    "skills": [
+        "User Experience (UX)",
+        "Graphic Designing",
+        "Illustration",
+        "C++",
+        "C (Programming Language)",
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "Figma",
+        "Soft Skills",
+        "Management",
+        "Teaching",
+        "UI/UX designing",
+        "UX Research"
+    ],
+    "social": [
+        "https://www.linkedin.com/in/anushravsinghal/",
+        "https://github.com/Primus023008"
+    ]
+}

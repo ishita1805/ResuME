@@ -1,5 +1,5 @@
 import click
-from utils import getENV, builder, verifyLinkedinURL
+from utils import getENV, builder, verifyLinkedinURL, welcome
 from scraping import scraping
 from PyInquirer import style_from_dict, Token, prompt
 from colorama import Fore
@@ -20,8 +20,9 @@ style = style_from_dict({
 
 def cli():
     """Generates a new website using your linkedin profile"""
-    if(getENV("PAT")==None or getENV("username")==None or getENV("password")==None):
-        print(Fore.RED+"Error: Please use 'init' command first");
+    welcome()
+    if(getENV("PAT")==None or getENV("owner")==None):
+        print(Fore.RED+"Error: Please use 'init' command first"+Fore.WHITE);
         return;
     build()
 
@@ -44,14 +45,14 @@ def build():
     
     verification = verifyLinkedinURL(answers["Linkedin"])
     if(verification ==None):
-        print(Fore.RED+"Error: Linkedin link not valid");
+        print(Fore.RED+"Error: Linkedin link not valid"+Fore.WHITE);
         return;
     # Scrape
     obj = scraping(answers['Linkedin'],answers['Github'])
     # function to build website and push website to github
     op = builder(obj)
     if(op):
-        print(Fore.RED+'Error: Repository already exists! try the "update" command')
+        print(Fore.RED+'Error: Repository already exists! try the "update" command'+Fore.WHITE)
     else:
-        print(Fore.GREEN+'Thanks!\nNext: Use the "websites" command')
+        print(Fore.GREEN+'Thanks!\nNext: Use the "deploy" command'+Fore.WHITE)
 
