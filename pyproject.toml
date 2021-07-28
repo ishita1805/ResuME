@@ -1,7 +1,7 @@
 [build-system]
 requires = [
     "setuptools>=42",
-    "wheel"
+    "wheel",
     "click==7.1.2",
     "pyfiglet==0.7",
     "PyInquirer==1.0.3",

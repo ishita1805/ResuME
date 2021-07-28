@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+src/ResuMe/__init__.py
+src/ResuMe/main.py
+src/ResuMe/scraping.py
+src/ResuMe/utils.py
+src/ResuMe.egg-info/PKG-INFO
+src/ResuMe.egg-info/SOURCES.txt
+src/ResuMe.egg-info/dependency_links.txt
+src/ResuMe.egg-info/top_level.txt

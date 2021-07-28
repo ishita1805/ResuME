@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: ResuMe
+Version: 0.0.1
+Summary: Generate and deploy beautiful websites in under 5 minuites
+Home-page: https://github.com/ishita1805/ResuME
+Author: Ishita Kabra
+Author-email: ishitakabra1805@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/ishita1805/ResuME/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+### [ResuME - Website Generator ](https://github.com/ishita1805/ResuME)
+*A CLI Tool to generate and deploy beautiful websites in under 5 minuites*
+
+**Installation**
+
+**Usage**
+
+
