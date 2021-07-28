@@ -130,13 +130,31 @@ def scraping(url,github):
 
             OtherInfo = Eds[i].find_all("p")
             for j in range(len(OtherInfo)):
-                ed[OtherInfo[j].find_all("span")[0].get_text().strip(
-                )] = OtherInfo[j].find_all("span")[1].get_text().strip()
+                ed[OtherInfo[j].find_all("span")[0].get_text().strip()] = OtherInfo[j].find_all("span")[1].get_text().strip()
 
             Educations.append(ed)
         data["education"] = Educations
     except Exception as e:
         pass
+
+    # GET CERTIFICATIONS
+    try:
+        CERTIFICATION = src.find_all("section",{"id":'certifications-section'})[0]
+        Certs = CERTIFICATION.find_all("li")
+        Certifications = []
+        for i in range(len(Certs)):
+            cer = dict()
+            if(Certs[i].find("h3")):
+                Title = Certs[i].find("h3").get_text().strip()
+                cer['Title'] = Title
+            
+            OtherInfo = Certs[i].find_all("p")
+            for j in range(len(OtherInfo)):
+                cer[OtherInfo[j].find_all("span")[0].get_text().strip()] = OtherInfo[j].find_all("span")[1].get_text().strip()
+            Certifications.append(cer)
+        data["certifications"] = Certifications
+    except Exception as e:
+        pass  
 
     # GET EXPERIENCES
     try:
@@ -222,3 +240,7 @@ def scraping(url,github):
    
     json_object = json.dumps(data, indent=4)
     return(json_object)
+
+
+# data = scraping('https://www.linkedin.com/in/anushravsinghal/','Primus023008 ')
+# print(data)

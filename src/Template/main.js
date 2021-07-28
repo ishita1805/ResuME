@@ -16,9 +16,11 @@ var navigation = $('#navigation')
 
 var aboutMain = $('#about')
 var education = $('#education')
+var certification = $('#certifications')
 var skillsMain = $('#skills')
 var workMain = $('#experiences')
 var volunteerMain = $('#volunteering')
+var projectsMain = $('#projects')
 
 // load json file
 fetch('data.json')
@@ -55,6 +57,22 @@ fetch('data.json')
     }
     else {
         education.remove()
+    }
+
+    // certifications
+    if(result['certifications']){
+        result['certifications'].forEach(element => {
+            var cer = `<div class='education-cont'>
+                            ${element['Title']?`<h3>${element['Title']}</h3>`:''}
+                            ${element['Issuing authority']?`<p><b>${element['Issuing authority']}</b></p>`:''}
+                            ${element['Issued date and, if applicable, expiration date of the certification or license']?`<p>${element['Issued date and, if applicable, expiration date of the certification or license']}</p>`:''}
+                            ${element['Credential Identifier']?`<p>${element['Credential Identifier']}</p>`:''}
+                        </div>`
+                        certification.append(cer)
+        });
+    }
+    else {
+        certification.remove()
     }
 
     // skills
@@ -108,20 +126,24 @@ fetch('data.json')
     fetch(`https://api.github.com/users/${github_id}/repos`)
     .then(response => response.json())
     .then(resp => {
-        resp.forEach(element => {        
-            if(element.description !== null && element.fork === false){
-                var project = `<div class='project-card'>
-                                    <b>${element.name}</b>
-                                    <p>Language: ${element.language}</p>
-                                    <p class='project-text'>
-                                        ${element.description}
-                                    </p>
-                                    <a href='${element.html_url}' target='__blank'><img class='icon' src='./assets/github.png'/></a>
-                                </div>`
-                projects.append(project)
-            }
-        });
-        navigation.append("<li class='nav-items'><a href='#projects'>Projects</a></li>")
+        if(resp.length>0){
+            resp.forEach(element => {        
+                if(element.fork === false){
+                    var project = `<div class='project-card'>
+                                        <b>${element.name}</b>
+                                        <p>Language: ${element.language===null?'Other':element.language}</p>
+                                        ${element.description?`<p class='project-text'>
+                                            ${element.description}
+                                        </p>`:''}
+                                        <a href='${element.html_url}' target='__blank'><img class='icon' src='./assets/github.png'/></a>
+                                    </div>`
+                    projects.append(project)
+                }
+            });
+            navigation.append("<li class='nav-items'><a href='#projects'>Projects</a></li>")
+        } else{
+            projectsMain.remove()
+        }
     })
     
     // volunteering

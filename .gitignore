@@ -2,3 +2,4 @@ src/ResuMe/config.txt
 src/ResuMe/__pycache__
 src/Output/ResuMe-*
 dist
+helper.html

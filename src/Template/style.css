@@ -149,6 +149,7 @@ body{
     background:var(--ed-purple);
     width:100vw;
     padding:5vh 5vw;
+    padding-bottom:1vh;
     display:flex;
     flex-direction:column;
 }
@@ -166,6 +167,18 @@ body{
 }
 .education-cont p{
     margin:0.5vh 0;
+}
+/* Certification */
+.certification{
+    background:var(--ed-purple);
+    width:100vw;
+    padding:5vh 5vw;
+    padding-top:0;
+    display:flex;
+    flex-direction:column;
+}
+.certification h4{
+    font-weight:600;
 }
 /* Skills Page */
 #skills{

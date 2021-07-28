@@ -18,6 +18,14 @@
             "Dates attended or expected graduation": "2014 \u2013 2018"
         }
     ],
+    "certifications":[
+        {
+            "Title":"User Experience: The Beginner’s Guide",
+            "Issuing authority":"The Interaction Design Foundation",
+            "Issued date and, if applicable, expiration date of the certification or license":"Issued May 2021",
+            "Credential Identifier":"Credential ID 101592"
+        }
+    ],
     "experience": [
         {
             "Company Name": "C4Projects",
