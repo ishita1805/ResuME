@@ -4,7 +4,6 @@ import json
 import sys
 import requests
 import shutil
-from pyfiglet import Figlet
 
 
 def createPath(path):
@@ -113,12 +112,8 @@ def deployer(repo):
     os.system("git commit -m 'website-deployed'")
     os.system("git push origin gh-pages")
 
-    return 'https://'+getENV('owner')+'.github.io/'+repo
+    return 'https://'+getENV('owner')+'.github.io/'+repo+'/'
 
-
-def welcome():
-    f = Figlet(font='slant')
-    print(f.renderText('ResuME'))
 
 
 

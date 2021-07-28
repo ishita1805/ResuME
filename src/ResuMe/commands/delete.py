@@ -2,7 +2,7 @@ import click
 import requests
 import shutil
 import os
-from utils import getENV, welcome
+from utils import getENV
 from PyInquirer import style_from_dict, Token, prompt
 from colorama import Fore
 import stat
@@ -23,7 +23,6 @@ style = style_from_dict({
 
 def cli():
     """Deletes the specified website"""
-    welcome()
     if(getENV("PAT")==None or getENV("username")==None or getENV("password")==None):
         print(Fore.RED+"Error: please use 'init' command first"+Fore.WHITE);
         return;

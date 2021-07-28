@@ -1,5 +1,5 @@
 import click
-from utils import getENV, builder, verifyLinkedinURL, welcome
+from utils import getENV, builder, verifyLinkedinURL
 from scraping import scraping
 from PyInquirer import style_from_dict, Token, prompt
 from colorama import Fore
@@ -20,7 +20,6 @@ style = style_from_dict({
 
 def cli():
     """Generates a new website using your linkedin profile"""
-    welcome()
     if(getENV("PAT")==None or getENV("owner")==None):
         print(Fore.RED+"Error: Please use 'init' command first"+Fore.WHITE);
         return;

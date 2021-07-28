@@ -1,5 +1,5 @@
 import click
-from utils import setENV, welcome
+from utils import setENV
 from PyInquirer import style_from_dict, Token, prompt
 from colorama import Fore
 
@@ -15,7 +15,6 @@ style = style_from_dict({
 
 def cli():
     """Sets up your credentials"""
-    welcome()
     questions = [
         {
             'type': 'input',

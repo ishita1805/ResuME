@@ -1,5 +1,5 @@
 import click
-from utils import getENV, deployer, welcome
+from utils import getENV, deployer
 from PyInquirer import style_from_dict, Token, prompt
 from colorama import Fore
 
@@ -16,8 +16,7 @@ style = style_from_dict({
 
 def cli():
     """Deploys website to github pages, auto deploys on updates"""
-    welcome()
-    if(getENV("PAT")==None or getENV("username")==None or getENV("password")==None):
+    if(getENV("PAT")==None or getENV("owner")==None):
         print(Fore.RED+"Error: please use 'init' command first"+Fore.WHITE);
         return;
     deploy()
