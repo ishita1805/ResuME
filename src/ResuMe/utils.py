@@ -93,9 +93,14 @@ def updateBuilder(data):
         outfile.write(data)
     # push to github
     os.chdir(r"../Output/ResuMe-"+dta['profile']['Name'].replace(" ","-"))
-    os.system("git add .")
-    os.system("git commit -m 'website-updated'")
-    os.system("git push origin master -f")
+    if(os.system('git rev-parse --verify gh-pages') == 0):
+        os.system("git add .")
+        os.system("git commit -m 'website-updated'")
+        os.system('git push --set-upstream origin gh-pages')
+    else:
+        os.system("git add .")
+        os.system("git commit -m 'website-updated'")
+        os.system("git push origin master")
 
 
 def deployer(repo):
