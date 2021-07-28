@@ -96,11 +96,11 @@ def updateBuilder(data):
     if(os.system('git rev-parse --verify gh-pages') == 0):
         os.system("git add .")
         os.system("git commit -m 'website-updated'")
-        os.system('git push --set-upstream origin gh-pages')
+        os.system('git push --set-upstream origin gh-pages -f')
     else:
         os.system("git add .")
         os.system("git commit -m 'website-updated'")
-        os.system("git push origin master")
+        os.system("git push origin master -f")
 
 
 def deployer(repo):
