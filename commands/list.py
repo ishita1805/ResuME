@@ -6,7 +6,7 @@ from colorama import Fore
 
 def cli():
     """Lists all generated website locations"""
-    os.chdir(r"../Output")
+    os.chdir(r"./Output")
     # os.system('dir')
     list = os.listdir(path='.')
     if(len(list)== 1):

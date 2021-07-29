@@ -49,18 +49,18 @@ def verifyLinkedinURL(url):
 def builder(data):
     dta = json.loads(data)
     # check if folder exists in the Output directory or github repo
-    dest = "../Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")
+    dest = "./Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")
     if(os.path.isdir(dest)):
         return True;
     # add data.json to template folder 
-    with open("../Template/data.json", "w") as outfile:
+    with open("./Template/data.json", "w") as outfile:
         outfile.write(data)
     github(dta['profile']['Name'])
 
 
 def github(name):
-    src = "../Template/"
-    dest = "../Output/ResuMe-"+name.replace(" ","-")
+    src = "./Template/"
+    dest = "./Output/ResuMe-"+name.replace(" ","-")
     PAT = getENV("PAT")
     Owner = getENV("owner")
     API_URL = 'https://api.github.com'
@@ -74,7 +74,7 @@ def github(name):
     # copy template folder files into output folder
     shutil.copytree(src, dest)
     # push to github
-    os.chdir(r"../Output/ResuMe-"+name.replace(" ","-"))
+    os.chdir(r"./Output/ResuMe-"+name.replace(" ","-"))
     os.system("git init")
     os.system("git add .")
     os.system("git commit -m 'website-generated'")
@@ -85,14 +85,14 @@ def github(name):
 def updateBuilder(data):
     dta = json.loads(data)
     # check if folder doesn't exists
-    dest = "../Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")
+    dest = "./Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")
     if(os.path.isdir(dest)==False):
         return True;
     # add data.json to output folder 
-    with open("../Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")+"/data.json", "w") as outfile:
+    with open("./Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")+"/data.json", "w") as outfile:
         outfile.write(data)
     # push to github
-    os.chdir(r"../Output/ResuMe-"+dta['profile']['Name'].replace(" ","-"))
+    os.chdir(r"./Output/ResuMe-"+dta['profile']['Name'].replace(" ","-"))
     if(os.system('git rev-parse --verify gh-pages') == 0):
         os.system("git add .")
         os.system("git commit -m 'website-updated'")
@@ -105,7 +105,7 @@ def updateBuilder(data):
 
 def deployer(repo):
     # change directory and create a new branch
-    os.chdir(r"../Output/"+repo)
+    os.chdir(r"./Output/"+repo)
     os.system('git checkout -b gh-pages')
     
     # modify readme file

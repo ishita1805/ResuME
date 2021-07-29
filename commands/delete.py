@@ -35,7 +35,7 @@ def cli():
     ]
     ans = prompt(questions, style=style)
     repo = ans['repo']
-    os.chdir(r"../Output")
+    os.chdir(r"./Output")
     check = False
     # check if repo exists
     list = os.listdir(path='.')

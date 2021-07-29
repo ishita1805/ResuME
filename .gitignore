@@ -1,5 +1,7 @@
-src/ResuMe/config.txt
-src/ResuMe/__pycache__
-src/Output/ResuMe-*
+config.txt
+__pycache__
+Output/ResuMe-*
 dist
+build
+main.spec
 helper.html
