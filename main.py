@@ -1,14 +1,14 @@
 import click
 import os
 from colorama import Fore
-from pyfiglet import Figlet
+# from pyfiglet import Figlet
 
 plugin_folder = os.path.join(os.path.dirname(__file__), 'commands')
 
 
-def welcome():
-    f = Figlet(font='slant')
-    print(f.renderText('ResuME'))
+# def welcome():
+#     f = Figlet(font='slant')
+#     print(f.renderText('ResuME'))
 
 class MyCLI(click.MultiCommand):
 
@@ -33,5 +33,5 @@ cli = MyCLI(help=Fore.GREEN+'This tool helps you generate beautiful websites in 
 
 
 if __name__ == '__main__':
-    welcome()
+    # welcome()
     cli()

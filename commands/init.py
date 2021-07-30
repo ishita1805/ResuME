@@ -29,4 +29,4 @@ def cli():
     ]
     answers = prompt(questions, style=style)
     setENV(answers)
-    print(Fore.GREEN+'Thanks! \nNext: Use the "build" command')
+    print(Fore.GREEN+'Thanks! \nNext: Use the "build" command'+Fore.WHITE)
