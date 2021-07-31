@@ -1,14 +1,19 @@
 import click
 import os
 from colorama import Fore
-import pyfiglet
 
 plugin_folder = os.path.join(os.path.dirname(__file__), 'commands')
 
 
 def welcome():
-    result = pyfiglet.figlet_format("ResuMe")
-    print(result)
+    welcomstring = """
+     _____                 __  __
+    |  _  \___  ___  _   _|  \/  | ___
+    | |_) / _ \/ __|| | | | |\/| |/ _ \\
+    |  _ <  __/\__ \| |_| | |  | |  __/
+    |_| \_\___||___/\__,__|_|  |_|\___| """
+    print(welcomstring)
+    print("\n")
 
 class MyCLI(click.MultiCommand):
 
