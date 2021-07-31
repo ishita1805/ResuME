@@ -1,14 +1,14 @@
 import click
 import os
 from colorama import Fore
-from pyfiglet import Figlet
+import pyfiglet
 
 plugin_folder = os.path.join(os.path.dirname(__file__), 'commands')
 
 
 def welcome():
-    f = Figlet(font='slant')
-    print(f.renderText('ResuME'))
+    result = pyfiglet.figlet_format("ResuMe")
+    print(result)
 
 class MyCLI(click.MultiCommand):
 
