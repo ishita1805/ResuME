@@ -4,10 +4,8 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from chromedriver_py import binary_path
-try:
-    import json
-except ImportError:
-    import simplejson as json
+import json
+
 
 # accessing the browser
 
