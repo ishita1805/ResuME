@@ -1,82 +1,90 @@
 {
     "profile": {
-        "Name": "Vedant Tibrewal",
-        "Headline": "Upcoming Software Engineer, Data Engineer at Tiger Analytics",
-        "Location": "Muri, Jharkhand, India"
+        "Name": "Ishita Kabra",
+        "Headline": "Student Developer | Projects and Events Head at TEC-VIT",
+        "Location": "Delhi, India"
     },
-    "about": "Experienced Committee Member with a demonstrated history of working in the electrical and electronic manufacturing industry. Skilled in Data Science and Computer Vision. Strong operations professional with a Bachelor of Technology focused in Electronics and Communications Engineering from Vellore Institute of Technology.",
+    "about": "Skilled in Responsive Web Design, Digital Image Processing, python and Web Development. Strong engineering professional, pursuing Bachelor of Technology - BTech focused in ECE IOT from Vellore Institute of Technology.",
     "education": [
         {
             "Institute": "Vellore Institute of Technology",
-            "Degree Name": "Bachelor of Technology",
-            "Field Of Study": "Electrical, Electronics and Communications Engineering",
-            "Dates attended or expected graduation": "2017 \u2013 2021"
-        },
-        {
-            "Institute": "Delhi Public School, Ranchi",
-            "Degree Name": "Senior Secondary Studies",
-            "Field Of Study": "PCM+Engg. Drawing + Physical Education",
-            "Dates attended or expected graduation": "2015 \u2013 2017"
+            "Degree Name": "Bachelor of Technology - BTech",
+            "Field Of Study": "ECE IOT",
+            "Dates attended or expected graduation": "2018 \u2013 2022"
         }
     ],
     "experience": [
         {
-            "Role": "Intern",
-            "Dates Employed": "Feb 2021 \u2013 Jul 2021",
+            "Company Name": "The Electronics Club, VIT",
+            "Roles": [
+                {
+                    "Title": "Projects and Events Head",
+                    "Dates Employed": "Dec 2020 \u2013 Present",
+                    "Employment Duration": "9 mos",
+                    "Location": "Vellore, Tamil Nadu, India"
+                },
+                {
+                    "Title": "The Electronics Club, VIT",
+                    "Dates Employed": "Dec 2018 \u2013 Present",
+                    "Employment Duration": "2 yrs 9 mos",
+                    "Location": "Vellore, Tamil Nadu"
+                },
+                {
+                    "Title": "Core Committee Member",
+                    "Dates Employed": "Sep 2019 \u2013 Present",
+                    "Employment Duration": "2 yrs",
+                    "Location": "Vellore, Tamil Nadu"
+                },
+                {
+                    "Title": "Speaker at Sensored (Annual workshop on IoT and Sensors)",
+                    "Dates Employed": "Sep 2019",
+                    "Employment Duration": "1 mo",
+                    "Location": "Vellore, Tamil Nadu"
+                }
+            ]
+        },
+        {
+            "Role": "MERN Stack Trainer",
+            "Dates Employed": "Mar 2021 \u2013 May 2021",
+            "Employment Duration": "3 mos",
+            "Company Name": "Codebugged AI"
+        },
+        {
+            "Role": "Product Development Lead",
+            "Dates Employed": "Mar 2021 \u2013 May 2021",
+            "Employment Duration": "3 mos",
+            "Location": "Mumbai, Maharashtra, India",
+            "Company Name": "HEED India"
+        },
+        {
+            "Role": "Full stack web developer",
+            "Dates Employed": "Nov 2020 \u2013 Apr 2021",
             "Employment Duration": "6 mos",
-            "Location": "Bangalore",
-            "Company Name": "Enverus"
+            "Location": "Gurugram, Haryana, India",
+            "Company Name": "Umbrette"
         },
         {
-            "Role": "Core Committee Member",
-            "Dates Employed": "Dec 2017 \u2013 Feb 2021",
-            "Employment Duration": "3 yrs 3 mos",
-            "Location": "Vellore Area, India",
-            "Company Name": "The Electronics Club, VIT"
-        },
-        {
-            "Role": "Internship Trainee",
-            "Dates Employed": "May 2019 \u2013 Jun 2019",
-            "Employment Duration": "2 mos",
-            "Location": "Ranchi Area, India",
-            "Company Name": "Steel Authority of India Limited"
-        },
-        {
-            "Role": "Summer Intern",
-            "Dates Employed": "May 2019 \u2013 Jun 2019",
-            "Employment Duration": "2 mos",
-            "Location": "Muri, India",
-            "Company Name": "Hindalco Industries Limited"
+            "Role": "Full Stack Web Developer",
+            "Dates Employed": "Aug 2020 \u2013 Oct 2020",
+            "Employment Duration": "3 mos",
+            "Company Name": "Codebugged AI"
         }
     ],
     "skills": [
-        "Deep Learning",
-        "Machine Learning",
-        "Internet of Things (IoT)",
-        "Computer vision",
-        "Data Science",
-        "Artificial Intelligence (AI)",
-        "Electronics",
-        "Project Management",
-        "Python (Programming Language)",
+        "Node.js",
+        "React.js",
+        "Web Development",
+        "Responsive Web Design",
+        "C (Programming Language)",
         "Arduino",
-        "Microsoft Office",
-        "Matlab",
-        "Soft Skills",
-        "Team Leadership",
-        "Team Management",
-        "Teamwork",
-        "Public Speaking",
-        "Creative Problem Solving",
-        "Raspberry Pi",
+        "Microsoft Azure",
+        "JavaScript",
+        "Full-Stack Development",
         "Digital Image Processing",
-        "Artificial Neural Networks",
-        "Convolutional Neural Networks (CNN)",
-        "opencv",
-        "Neural Networks"
+        "OpenCV"
     ],
     "social": [
-        "https://www.linkedin.com/in/vedant-tibrewal-364208159/",
-        "https://github.com/Vedant-Tibrewal"
+        "https://www.linkedin.com/in/ishita-kabra-3b305818b/",
+        "https://github.com/ishita1805"
     ]
 }

@@ -4,14 +4,14 @@ from colorama import Fore
 
 plugin_folder = os.path.join(os.path.dirname(__file__), 'commands')
 
+welcomstring = """
+ _____                 __  __
+|  _  \___  ___  _   _|  \/  | ___
+| |_) / _ \/ __|| | | | |\/| |/ _ \\
+|  _ <  __/\__ \| |_| | |  | |  __/
+|_| \_\___||___/\__,__|_|  |_|\___|"""
 
 def welcome():
-    welcomstring = """
-     _____                 __  __
-    |  _  \___  ___  _   _|  \/  | ___
-    | |_) / _ \/ __|| | | | |\/| |/ _ \\
-    |  _ <  __/\__ \| |_| | |  | |  __/
-    |_| \_\___||___/\__,__|_|  |_|\___| """
     print(Fore.LIGHTGREEN_EX+welcomstring+Fore.WHITE)
     print("\n")
 

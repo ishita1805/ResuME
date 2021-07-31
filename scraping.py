@@ -2,19 +2,18 @@
 from time import sleep
 from selenium import webdriver
 from bs4 import BeautifulSoup
-from selenium.webdriver.common.by import By
-from chromedriver_py import binary_path
+# from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
 import json
 
 
-# accessing the browser
-
-
 def scraping(url,github):
+
+    # accessing the browser
+
     options = webdriver.ChromeOptions()
     options.add_argument("--incognito")
-    caps = options.to_capabilities()
-    browser = webdriver.Chrome(executable_path=binary_path)
+    browser = webdriver.Chrome(ChromeDriverManager().install())
     browser.get("http://www.python.org")
     assert "Python" in browser.title
     browser.maximize_window()
