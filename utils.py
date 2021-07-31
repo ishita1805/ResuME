@@ -1,10 +1,12 @@
 import os
 import re
-import json
 import sys
 import requests
 import shutil
-
+try:
+    import json
+except ImportError:
+    import simplejson as json
 
 def createPath(path):
     if not os.path.exists(path):

@@ -5,3 +5,6 @@ requests==2.25.1,
 selenium== 3.141.0,
 bs4==0.0.1,
 chromedriver-py==92.0.4515.43,
+requests==2.26.0,
+sys==3.9.6,
+json==2.0.9
