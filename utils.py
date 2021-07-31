@@ -49,18 +49,22 @@ def verifyLinkedinURL(url):
 def builder(data):
     dta = json.loads(data)
     # check if folder exists in the Output directory or github repo
-    dest = "./Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")
+    path_output = os.path.join(os.path.dirname(__file__), 'Output')
+    path_template = os.path.join(os.path.dirname(__file__), 'Template')
+    dest = path_output+"/ResuMe-"+dta['profile']['Name'].replace(" ","-")
     if(os.path.isdir(dest)):
         return True;
     # add data.json to template folder 
-    with open("./Template/data.json", "w") as outfile:
+    with open(path_template+"/data.json", "w") as outfile:
         outfile.write(data)
     github(dta['profile']['Name'])
 
 
 def github(name):
-    src = "./Template/"
-    dest = "./Output/ResuMe-"+name.replace(" ","-")
+    path_template = os.path.join(os.path.dirname(__file__), 'Template')
+    path_output = os.path.join(os.path.dirname(__file__), 'Output')
+    src = path_template+"/"
+    dest = path_output+"/ResuMe-"+name.replace(" ","-")
     PAT = getENV("PAT")
     Owner = getENV("owner")
     API_URL = 'https://api.github.com'
@@ -74,7 +78,7 @@ def github(name):
     # copy template folder files into output folder
     shutil.copytree(src, dest)
     # push to github
-    os.chdir(r"./Output/ResuMe-"+name.replace(" ","-"))
+    os.chdir(path_output+"/ResuMe-"+name.replace(" ","-"))
     os.system("git init")
     os.system("git add .")
     os.system("git commit -m 'website-generated'")
@@ -85,14 +89,15 @@ def github(name):
 def updateBuilder(data):
     dta = json.loads(data)
     # check if folder doesn't exists
-    dest = "./Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")
+    path_output = os.path.join(os.path.dirname(__file__), 'Output')
+    dest = path_output+"/ResuMe-"+dta['profile']['Name'].replace(" ","-")
     if(os.path.isdir(dest)==False):
         return True;
     # add data.json to output folder 
-    with open("./Output/ResuMe-"+dta['profile']['Name'].replace(" ","-")+"/data.json", "w") as outfile:
+    with open(path_output+"/ResuMe-"+dta['profile']['Name'].replace(" ","-")+"/data.json", "w") as outfile:
         outfile.write(data)
     # push to github
-    os.chdir(r"./Output/ResuMe-"+dta['profile']['Name'].replace(" ","-"))
+    os.chdir(path_output+"/ResuMe-"+dta['profile']['Name'].replace(" ","-"))
     if(os.system('git rev-parse --verify gh-pages') == 0):
         os.system("git add .")
         os.system("git commit -m 'website-updated'")
@@ -105,7 +110,8 @@ def updateBuilder(data):
 
 def deployer(repo):
     # change directory and create a new branch
-    os.chdir(r"./Output/"+repo)
+    path_output = os.path.join(os.path.dirname(__file__), 'Output')
+    os.chdir(path_output+'/'+repo)
     os.system('git checkout -b gh-pages')
     
     # modify readme file
@@ -118,8 +124,3 @@ def deployer(repo):
     os.system("git push origin gh-pages")
 
     return 'https://'+getENV('owner')+'.github.io/'+repo+'/'
-
-
-
-
-

@@ -2,23 +2,24 @@
 from time import sleep
 from selenium import webdriver
 from bs4 import BeautifulSoup
-# from selenium.webdriver.common.by import By
+from selenium.webdriver import ChromeOptions
 from webdriver_manager.chrome import ChromeDriverManager
 import json
+import os
 
 
 def scraping(url,github):
 
     # accessing the browser
-
-    options = webdriver.ChromeOptions()
+    conf_path = os.path.join(os.path.dirname(__file__), 'config.txt')
+    options = ChromeOptions()
     options.add_argument("--incognito")
     browser = webdriver.Chrome(ChromeDriverManager().install())
     browser.get("http://www.python.org")
     assert "Python" in browser.title
     browser.maximize_window()
     browser.get('https://www.linkedin.com/uas/login')
-    files = open('config.txt')
+    files = open(conf_path)
     lines = files.readlines()
     username = lines[0]
     password = lines[1]
