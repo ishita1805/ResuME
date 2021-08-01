@@ -1,10 +1,14 @@
 import click
 import os
-from colorama import Fore
+from colorama import Fore, init
+import psutil
+
+if psutil.Process(os.getpid()).parent().name() == 'cmd.exe':
+    init(convert=True)
 
 plugin_folder = os.path.join(os.path.dirname(__file__), 'commands')
 
-welcomstring = """
+welcomstring = """\n
  _____                 __  __
 |  _  \___  ___  _   _|  \/  | ___
 | |_) / _ \/ __|| | | | |\/| |/ _ \\
@@ -12,7 +16,7 @@ welcomstring = """
 |_| \_\___||___/\__,__|_|  |_|\___|"""
 
 def welcome():
-    print(Fore.LIGHTGREEN_EX+welcomstring+Fore.WHITE)
+    print(Fore.YELLOW+welcomstring.rstrip())
     print("\n")
 
 class MyCLI(click.MultiCommand):
@@ -33,8 +37,8 @@ class MyCLI(click.MultiCommand):
             eval(code, ns, ns)
         return ns['cli']
 
-cli = MyCLI(help=Fore.LIGHTGREEN_EX+'This tool helps you generate beautiful websites in under 5 minuites. '+Fore.LIGHTRED_EX+'Requirement: Git CLI installed and authenticated on your device.'
-            +Fore.YELLOW+' Note: Please enter github details only for the account authenticated on your git CLI'+Fore.WHITE)
+cli = MyCLI(help=Fore.YELLOW+'This tool helps you generate beautiful websites in under 5 minuites. '+Fore.RED+'Requirement: Git CLI installed and authenticated on your device.'
+            +Fore.LIGHTGREEN_EX+' Note: Please enter github details only for the account authenticated on your git CLI'+Fore.WHITE)
 
 
 if __name__ == '__main__':

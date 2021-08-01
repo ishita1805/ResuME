@@ -4,9 +4,13 @@ import sys
 import requests
 import shutil
 import json
-from colorama import Fore
 import stat
 from os import path
+from colorama import Fore, init
+import psutil
+
+if psutil.Process(os.getpid()).parent().name() == 'cmd.exe':
+    init(convert=True)
 
 
 def createPath(path):
@@ -24,7 +28,6 @@ def getConfigDir():
             app_config_dir = os.getenv("XDG_CONFIG_HOME")
 
     configDir = os.path.join(os.path.join(app_config_dir, ".localconfig"), 'configstore')
-    # print(configDir)
 
     createPath(configDir)
     if os.path.exists(configDir) and not os.path.isfile(os.path.join(configDir, 'ResuME.json')):
@@ -135,12 +138,12 @@ def list():
     # os.system('dir')
     list = os.listdir(path='.')
     if(len(list)== 1):
-        print(Fore.GREEN+'No ResuMe\'s Available, Try the "build" command'+Fore.WHITE)
+        print(Fore.LIGHTGREEN_EX+'No ResuMe\'s Available, Try the "build" command'.strip())
     else:
-        print(Fore.GREEN+'Available ResuMe\'s:')
+        print(Fore.LIGHTGREEN_EX+'Available ResuMe\'s:'.strip())
         for i in range(1,len(list)):
-            print(Fore.GREEN+list[i])
-        print(''+Fore.WHITE)
+            print(Fore.LIGHTGREEN_EX+list[i].strip())
+        
 
 
 def delRepo(repo):
@@ -153,7 +156,7 @@ def delRepo(repo):
         if(list[i] == repo):
             check = True
     if(check == False):
-        print(Fore.RED+'Error: ResuMe not found'+Fore.WHITE)
+        print(Fore.RED+'Error: ResuMe not found')
         return;
     # delete this repo from output directory
     for root, dirs, files in os.walk(repo):  
@@ -172,4 +175,4 @@ def delRepo(repo):
         "Accept": "application/vnd.github.v3+json"
     }
     requests.delete(API_URL, headers=Headers)
-    print(Fore.GREEN+'\nResuMe Deleted'+Fore.WHITE)
+    print(Fore.GREEN+'\nResuMe Deleted'.strip())

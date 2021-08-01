@@ -1,7 +1,12 @@
 import click
 from utils import delRepo, getENV
 from PyInquirer import style_from_dict, Token, prompt
-from colorama import Fore
+import os
+from colorama import Fore, init
+import psutil
+
+if psutil.Process(os.getpid()).parent().name() == 'cmd.exe':
+    init(convert=True)
 
 
 style = style_from_dict({
@@ -18,7 +23,7 @@ style = style_from_dict({
 def cli():
     """Deletes the specified website"""
     if(getENV("PAT")==None or getENV("owner")==None):
-        print(Fore.RED+"Error: please use 'init' command first"+Fore.WHITE);
+        print(Fore.RED+"Error: please use 'init' command first")
         return;
     questions = [
         {

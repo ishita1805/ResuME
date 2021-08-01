@@ -1,8 +1,13 @@
 import click
 from utils import getENV, deployer
 from PyInquirer import style_from_dict, Token, prompt
-from colorama import Fore
+import os
+from colorama import Fore, init
+import psutil
 
+if psutil.Process(os.getpid()).parent().name() == 'cmd.exe':
+    init(convert=True)
+    
 style = style_from_dict({
     Token.QuestionMark: '#ff2b73 bold',
     Token.Selected: '',
@@ -17,7 +22,7 @@ style = style_from_dict({
 def cli():
     """Deploys website to github pages, auto deploys on updates"""
     if(getENV("PAT")==None or getENV("owner")==None):
-        print(Fore.RED+"Error: please use 'init' command first"+Fore.WHITE);
+        print(Fore.RED+"Error: please use 'init' command first")
         return;
     deploy()
 
@@ -32,4 +37,4 @@ def deploy():
     ans = prompt(questions, style=style)
     repo = ans['repo']
     msg = deployer(repo)
-    print(Fore.GREEN+'Your ResuMe is deployed at: '+msg+Fore.WHITE)
+    print(Fore.LIGHTGREEN_EX+'Your ResuMe is deployed at: '+msg)

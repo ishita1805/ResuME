@@ -1,7 +1,12 @@
 import click
 from utils import setENV
 from PyInquirer import style_from_dict, Token, prompt
-from colorama import Fore
+import os
+from colorama import Fore, init
+import psutil
+
+if psutil.Process(os.getpid()).parent().name() == 'cmd.exe':
+    init(convert=True)
 
 style = style_from_dict({
     Token.QuestionMark: '#ff2b73 bold',
@@ -29,4 +34,4 @@ def cli():
     ]
     answers = prompt(questions, style=style)
     setENV(answers)
-    print(Fore.GREEN+'Thanks! \nNext: Use the "build" command'+Fore.WHITE)
+    print(Fore.LIGHTGREEN_EX+'Thanks! \nNext: Use the "build" command');
