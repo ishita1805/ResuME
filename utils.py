@@ -63,7 +63,10 @@ def builder(data):
     # add data.json to template folder 
     with open(path_template+"/data.json", "w") as outfile:
         outfile.write(data)
-    github(dta['profile']['Name'])
+    name = dta['profile']['Name']
+    if(name.endswith('.')):
+        name = dta['profile']['Name'][:-1]
+    github(name)
 
 
 def github(name):
@@ -142,7 +145,7 @@ def list():
     else:
         print(Fore.LIGHTGREEN_EX+'Available ResuMe\'s:'.strip())
         for i in range(1,len(list)):
-            print(Fore.LIGHTGREEN_EX+list[i].strip())
+            print(Fore.GREEN+list[i].strip())
         
 
 
