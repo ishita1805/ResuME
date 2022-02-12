@@ -147,14 +147,17 @@ def list():
     # get output path
     output = getENV("Output");
     path_output = os.path.join(output, 'Output')
-    os.chdir(path_output);
-    list = os.listdir();
-    if(len(list) <= 0):
-        print(Fore.LIGHTGREEN_EX+'No ResuMe\'s Available, Try the command: `resuMe build`'+Fore.WHITE)
+    if(os.path.exists(path_output)):
+        os.chdir(path_output);
+        list = os.listdir();
+        if(len(list) <= 0):
+            print(Fore.RED+'No ResuMe\'s Available, Try the command: `resuMe build`'+Fore.WHITE)
+        else:
+            print(Fore.LIGHTGREEN_EX+'Available ResuMe\'s:'+Fore.WHITE)
+            for i in range(0,len(list)):
+                print(Fore.LIGHTGREEN_EX+list[i].strip()+Fore.WHITE)
     else:
-        print(Fore.LIGHTGREEN_EX+'Available ResuMe\'s:'+Fore.WHITE)
-        for i in range(0,len(list)):
-            print(Fore.LIGHTGREEN_EX+list[i].strip()+Fore.WHITE)
+        print(Fore.RED+'No ResuMe\'s Available, Try the command: `resuMe build`'+Fore.WHITE)
         
 
 

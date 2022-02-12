@@ -299,8 +299,6 @@ def scraping(email,password,url,github):
     json_object = json.dumps(data, indent=4)
     return(json_object)
 
-
-data = scraping('ishitakabra1805@gmail.com','Eshan@1805','https://www.linkedin.com/in/ishita-kabra-3b305818b/','ishita1805')
 # print(data)
 # https://www.linkedin.com/in/paige-liwanag/
 # https://www.linkedin.com/in/paulhigginsmentoring/
