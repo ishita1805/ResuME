@@ -6,24 +6,21 @@ from bs4 import BeautifulSoup
 from selenium.webdriver import ChromeOptions
 from webdriver_manager.chrome import ChromeDriverManager
 import json
-import os
+import logging
+
 
 
 def scraping(email,password,url,github):
+    logging.disable(logging.CRITICAL);
 
-    # accessing the browser
-    # conf_path = os.path.join(os.path.dirname(__file__), 'config.txt')
     options = ChromeOptions()
     options.add_argument("--incognito")
-    browser = webdriver.Chrome(ChromeDriverManager().install())
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    browser = webdriver.Chrome(ChromeDriverManager().install(),options=options)
     browser.get("http://www.python.org")
     assert "Python" in browser.title
     browser.maximize_window()
     browser.get('https://www.linkedin.com/uas/login')
-    # files = open(conf_path)
-    # lines = files.readlines()
-    # username = lines[0]
-    # password = lines[1]
 
     element_ID = browser.find_element_by_id('username')
     element_ID.send_keys(email)
@@ -112,7 +109,7 @@ def scraping(email,password,url,github):
 
     # GET ABOUT INFO
     try:
-        ABOUT = src.find("div",{ "id": "about" }).find_next_siblings()[1].get_text().strip();
+        ABOUT = src.find("div",{ "id": "about" }).find_next_siblings()[1].find("span",{"class":"visually-hidden"}).get_text().strip();
         if(ABOUT != 'About'):
             data["about"] = ABOUT
     except Exception as e:
@@ -133,11 +130,11 @@ def scraping(email,password,url,github):
                 browser.execute_script("window.scrollTo(0,"+str(cur_height)+");")
                 ch += ch
             skill_page = BeautifulSoup(browser.page_source, 'lxml')
-            skills_page_li = skill_page.find_all("li",{ "class": "pvs-list__paged-list-item artdeco-list__item pvs-list__item--line-separated" });
+            skills_page_li = skill_page.find("div",{"class":"scaffold-finite-scroll__content"}).find_all("li",{ "class": "pvs-list__paged-list-item artdeco-list__item pvs-list__item--line-separated" });
             for skill_item in skills_page_li:
                 sks = skill_item.find_all("span",{ "class": "visually-hidden" })
                 skills.append(sks[0].get_text());
-        else :     
+        else :  
             skills = SKILLS.find_all("li",{ "class": "artdeco-list__item pvs-list__item--line-separated pvs-list__item--one-column" });
             for skill in skills:
                 sks = skill.find_all("span",{ "class": "visually-hidden" })
@@ -303,5 +300,7 @@ def scraping(email,password,url,github):
     return(json_object)
 
 
+data = scraping('ishitakabra1805@gmail.com','Eshan@1805','https://www.linkedin.com/in/ishita-kabra-3b305818b/','ishita1805')
+# print(data)
 # https://www.linkedin.com/in/paige-liwanag/
 # https://www.linkedin.com/in/paulhigginsmentoring/
