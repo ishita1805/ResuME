@@ -12,7 +12,7 @@ Hey there 👋🏽, I'm Ishita and I've made this project to help fellow develop
     - [Integration with Github](#integration-with-github)
     - [Commands and Features](#commands-and-features)
 - [Bugs and Feature Requests](#bugs-and-feature-requests)
-- [Contributing](https://github.com/ishita1805/ResuME/CONTRIBUTING.md)
+- [Contributing](https://github.com/ishita1805/ResuME/blob/main/CONTRIBUTING.md)
 
 
 ### **Installation**
