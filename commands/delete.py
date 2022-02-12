@@ -22,7 +22,7 @@ style = style_from_dict({
 def cli():
     """Deletes the specified website"""
     if(getENV("PAT")==None or getENV("owner")==None):
-        print(Fore.RED+"Error: please use 'init' command first")
+        print(Fore.RED+"Error: please use the command: `resuMe init` first"+Fore.WHITE)
         return;
     questions = [
         {

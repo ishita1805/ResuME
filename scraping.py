@@ -25,11 +25,11 @@ def scraping(email,password,url,github):
     # username = lines[0]
     # password = lines[1]
 
-    elementID = browser.find_element_by_id('username')
-    elementID.send_keys(email)
-    elementID = browser.find_element_by_id('password')
-    elementID.send_keys(password)
-    elementID.submit()
+    element_ID = browser.find_element_by_id('username')
+    element_ID.send_keys(email)
+    element_ID = browser.find_element_by_id('password')
+    element_ID.send_keys(password)
+    element_ID.submit()
 
     profile = url
     browser.get(profile)
@@ -121,28 +121,28 @@ def scraping(email,password,url,github):
     # GET SKILLS
     try:
         SKILLS = src.find("div",{ "id": "skills" }).find_next_siblings()[1];
-        allSkills = SKILLS.find("div",{ "class": "pvs-list__footer-wrapper" });
-        Skills = [];
-        if allSkills :
-            skillLink = allSkills.find("a", href=True)["href"];
-            browser.get(skillLink);
+        all_skills = SKILLS.find("div",{ "class": "pvs-list__footer-wrapper" });
+        skills = [];
+        if all_skills :
+            skill_link = all_skills.find("a", href=True)["href"];
+            browser.get(skill_link);
             fh = browser.execute_script('return document.body.scrollHeight');
             ch = browser.execute_script('return window.innerHeight');
             while ch <= fh:
                 sleep(15)
                 browser.execute_script("window.scrollTo(0,"+str(cur_height)+");")
                 ch += ch
-            skillPage = BeautifulSoup(browser.page_source, 'lxml')
-            skills = skillPage.find_all("li",{ "class": "pvs-list__paged-list-item artdeco-list__item pvs-list__item--line-separated" });
-            for skillIten in skills:
-                sks = skillIten.find_all("span",{ "class": "visually-hidden" })
-                Skills.append(sks[0].get_text());
+            skill_page = BeautifulSoup(browser.page_source, 'lxml')
+            skills_page_li = skill_page.find_all("li",{ "class": "pvs-list__paged-list-item artdeco-list__item pvs-list__item--line-separated" });
+            for skill_item in skills_page_li:
+                sks = skill_item.find_all("span",{ "class": "visually-hidden" })
+                skills.append(sks[0].get_text());
         else :     
             skills = SKILLS.find_all("li",{ "class": "artdeco-list__item pvs-list__item--line-separated pvs-list__item--one-column" });
             for skill in skills:
                 sks = skill.find_all("span",{ "class": "visually-hidden" })
-                Skills.append(sks[0].get_text());
-        data["skills"] = Skills
+                skills.append(sks[0].get_text());
+        data["skills"] = skills
     except Exception as e:
         pass
 
@@ -155,64 +155,64 @@ def scraping(email,password,url,github):
     # GET EXPERIENCES
     try:
         EXPERIENCE = src.find("div",{ "id": "experience" }).find_next_siblings()[1];
-        allExps = EXPERIENCE.find("div",{ "class": "pvs-list__footer-wrapper" });
+        all_exps = EXPERIENCE.find("div",{ "class": "pvs-list__footer-wrapper" });
         Experiences = [];
-        if allExps :
-            expLink = allExps.find("a", href=True)["href"];
-            browser.get(expLink);
+        if all_exps :
+            exp_link = all_exps.find("a", href=True)["href"];
+            browser.get(exp_link);
             fh = browser.execute_script('return document.body.scrollHeight');
             ch = browser.execute_script('return window.innerHeight');
             while ch <= fh:
                 sleep(15)
                 browser.execute_script("window.scrollTo(0,"+str(cur_height)+");")
                 ch += ch
-            expPage = BeautifulSoup(browser.page_source, 'lxml');
-            Exs = expPage.find_all("li", { "class": "pvs-list__paged-list-item artdeco-list__item pvs-list__item--line-separated" });
-            for i in Exs:
+            exp_page = BeautifulSoup(browser.page_source, 'lxml');
+            exps = exp_page.find_all("li", { "class": "pvs-list__paged-list-item artdeco-list__item pvs-list__item--line-separated" });
+            for i in exps:
                 exp = dict()
-                expList = i.find_all("li", { "class": "pvs-list__paged-list-item" });
-                if len(expList) > 0 : 
+                exp_list = i.find_all("li", { "class": "pvs-list__paged-list-item" });
+                if len(exp_list) > 0 : 
                     expRoles = [];
                     exp["heading"] = i.find("div",{ "class": "display-flex align-items-center" }).find("span", { "class": "visually-hidden"}).get_text().strip();
-                    for expLiItem in expList:
-                        expSpans = expLiItem.find_all("span",{ "class": "visually-hidden"});
+                    for exp_li_item in exp_list:
+                        exp_spans = exp_li_item.find_all("span",{ "class": "visually-hidden"});
                         expRoleBody = [];
-                        for expSpItem in expSpans:
+                        for expSpItem in exp_spans:
                             expRoleBody.append(expSpItem.get_text().strip());
                         expRoles.append(expRoleBody);
                     exp["roles"] = expRoles;      
                 else :
-                    expSpans = i.find_all("span",{ "class": "visually-hidden"});
-                    exp["heading"] = expSpans.pop(0).get_text().strip();
-                    expBody = []
-                    for expBodyElm in expSpans:
-                        expBody.append(expBodyElm.get_text().strip());
-                    exp["body"] = expBody; 
+                    exp_spans = i.find_all("span",{ "class": "visually-hidden"});
+                    exp["heading"] = exp_spans.pop(0).get_text().strip();
+                    exp_body = []
+                    for exp_body_elm in exp_spans:
+                        exp_body.append(exp_body_elm.get_text().strip());
+                    exp["body"] = exp_body; 
                 Experiences.append(exp);   
         else :
-            Exs = EXPERIENCE.find_all("li", {"class":"pvs-list__item--line-separated"});
-            for i in Exs:
+            exps = EXPERIENCE.find_all("li", {"class":"pvs-list__item--line-separated"});
+            for i in exps:
                 exp = dict()
                 # this part doesn't work
-                expList = i.find_all("li", { "class": "" })
-                if len(expList) > 0 : 
-                    expRoles = [];
+                exp_list = i.find_all("li", { "class": "" })
+                if len(exp_list) > 0 : 
+                    exp_roles = [];
                     exp["heading"] = i.find("div",{ "class": "display-flex align-items-center" }).find("span", { "class": "visually-hidden"}).get_text().strip();
-                    for expLiItem in expList:
-                        expSpans = expLiItem.find_all("span",{ "class": "visually-hidden"});
-                        expRoleBody = [];
-                        for expSpItem in expSpans:
-                            expRoleBody.append(expSpItem.get_text().strip());
-                        expRoles.append(expRoleBody);
-                    exp["roles"] = expRoles;      
+                    for exp_li_item in exp_list:
+                        exp_spans = exp_li_item.find_all("span",{ "class": "visually-hidden"});
+                        exp_role_body = [];
+                        for exp_span_item in exp_spans:
+                            exp_role_body.append(exp_span_item.get_text().strip());
+                        exp_roles.append(exp_role_body);
+                    exp["roles"] = exp_roles;      
                 # this part works
                 else :
-                    expSpans = i.find_all("span",{ "class": "visually-hidden"});
-                    exp["heading"] = expSpans.pop(0).get_text().strip();
-                    expBody = []
-                    for expBodyElm in expSpans:
-                        expBody.append(expBodyElm.get_text().strip());
-                    exp["body"] = expBody; 
+                    exp_spans = i.find_all("span",{ "class": "visually-hidden"});
+                    exp["heading"] = exp_spans.pop(0).get_text().strip();
+                    exp_body = []
+                    for exp_body_elem in exp_spans:
+                        exp_body.append(exp_body_elem.get_text().strip());
+                    exp["body"] = exp_body; 
                 Experiences.append(exp);  
         data["experience"] = Experiences
     except Exception as e:
@@ -221,20 +221,20 @@ def scraping(email,password,url,github):
     # GET EDUCATIONAL INFO
     try:
         EDUCATION = src.find("div",{ "id": "education" }).find_next_siblings()[1];
-        allEds = EDUCATION.find("div",{ "class": "pvs-list__footer-wrapper" });
+        all_eds = EDUCATION.find("div",{ "class": "pvs-list__footer-wrapper" });
         Educations = []
-        if allEds:
-            edLink = allEds.find("a", href=True)["href"];
-            browser.get(edLink);
+        if all_eds:
+            ed_link = all_eds.find("a", href=True)["href"];
+            browser.get(ed_link);
             fh = browser.execute_script('return document.body.scrollHeight');
             ch = browser.execute_script('return window.innerHeight');
             while ch <= fh:
                 sleep(15)
                 browser.execute_script("window.scrollTo(0,"+str(cur_height)+");")
                 ch += ch
-            edsPage = BeautifulSoup(browser.page_source, 'lxml')
-            Eds = edsPage.find_all("li",{ "class":"pvs-list__paged-list-item" });
-            for i in Eds:
+            eds_page = BeautifulSoup(browser.page_source, 'lxml')
+            eds_li = eds_page.find_all("li",{ "class":"pvs-list__paged-list-item" });
+            for i in eds_li:
                 ed = dict()
                 eds = i.find_all("span",{ "class": "visually-hidden" })
                 if len(eds) > 0 : ed["institute"] = eds.pop(0).get_text().strip();
@@ -244,8 +244,8 @@ def scraping(email,password,url,github):
                 ed["body"] = others;
                 Educations.append(ed);
         else:
-            Eds = EDUCATION.find_all("li",{ "class":"pvs-list__item--line-separated" })
-            for i in Eds:
+            eds_li = EDUCATION.find_all("li",{ "class":"pvs-list__item--line-separated" })
+            for i in eds_li:
                 ed = dict()
                 eds = i.find_all("span",{ "class": "visually-hidden" })
                 if len(eds) > 0 : ed["institute"] = eds.pop(0).get_text().strip();
@@ -261,9 +261,9 @@ def scraping(email,password,url,github):
     # GET CERTIFICATIONS (TODO: VIEW ALL)
     try:
         CERTIFICATION = src.find("div",{"id":'licenses_and_certifications'}).find_next_siblings()[1];
-        Certs = CERTIFICATION.find_all("li", { "class": "pvs-list__item--one-column" })
+        certs_li = CERTIFICATION.find_all("li", { "class": "pvs-list__item--one-column" })
         Certifications = []
-        for i in Certs:
+        for i in certs_li:
             cer = dict()
             certs = i.find_all("span",{ "class": "visually-hidden"})
             if len(certs) > 0 : cer["course"] = certs.pop(0).get_text();
@@ -280,9 +280,9 @@ def scraping(email,password,url,github):
     # GET VOLUNTEER (TODO: VIEW ALL)
     try:
         VOLUNTEER = src.find("div",{ "id": "volunteering_experience" }).find_next_siblings()[1];
-        Vls = VOLUNTEER.find_all("li",{ "class": "artdeco-list__item pvs-list__item--line-separated pvs-list__item--one-column" })
+        vls_list = VOLUNTEER.find_all("li",{ "class": "artdeco-list__item pvs-list__item--line-separated pvs-list__item--one-column" })
         Volunteers = []
-        for i in Vls:
+        for i in vls_list:
             vl = dict()
             vls = i.find_all("span",{ "class": "visually-hidden" });
             others = [];
@@ -302,8 +302,6 @@ def scraping(email,password,url,github):
     json_object = json.dumps(data, indent=4)
     return(json_object)
 
-# data = scraping('https://www.linkedin.com/in/paulhigginsmentoring/','ishita1805')
-# print(data)
 
 # https://www.linkedin.com/in/paige-liwanag/
 # https://www.linkedin.com/in/paulhigginsmentoring/

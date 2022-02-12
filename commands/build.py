@@ -25,7 +25,7 @@ style = style_from_dict({
 def cli():
     """Generates a new website using your linkedin profile"""
     if(getENV("PAT")==None or getENV("owner")==None):
-        print(Fore.RED+"Error: Please use 'init' command first");
+        print(Fore.RED+"Error: Please use the command: `resuMe init` first"+Fore.WHITE);
         return;
     build()
 
@@ -48,22 +48,22 @@ def build():
     
     verification = verifyLinkedinURL(answers["Linkedin"])
     if(verification ==None):
-        print(Fore.RED+"Error: Linkedin link not valid");
+        print(Fore.RED+"Error: Linkedin URL not valid"+Fore.WHITE);
         return;
     # get creds
-    Email = getENV("Email");
-    Password = getENV("Password");
+    email = getENV("Email");
+    password = getENV("Password");
     # Scrape
     obj = scraping(
-        Email,
-        Password,
+        email,
+        password,
         answers['Linkedin'],
         answers['Github']
         )
     # function to build website and push website to github
     op = builder(obj)
     if(op):
-        print(Fore.RED+'Error: Repository already exists! try the "update" command')
+        print(Fore.RED+'Error: Repository already exists! try the command: `resuMe update`'+Fore.WHITE)
     else:
-        print(Fore.LIGHTGREEN_EX+'Thanks!\nNext: Use the "deploy" command')
+        print(Fore.LIGHTGREEN_EX+'Yay! your website is built\nNext: Use the command: `resuMe deploy`'+Fore.WHITE)
 

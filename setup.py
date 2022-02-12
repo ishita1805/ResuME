@@ -1,6 +1,6 @@
 import sys
 import subprocess
-
+from colorama import Fore
 # list of packages
 packages = [
     'click==7.1.2',
@@ -24,4 +24,4 @@ reqs = subprocess.check_output([sys.executable, '-m', 'pip',
 installed_packages = [r.decode().split('==')[0] for r in reqs.split()]
 
 
-print('Yay! your project is all set up')
+print(Fore.LIGHTGREEN_EX+'Yay! ResuMe is all set up\n'+Fore.WHITE)

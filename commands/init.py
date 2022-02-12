@@ -48,4 +48,4 @@ def cli():
     ]
     answers = prompt(questions, style=style)
     setENV(answers)
-    print(Fore.LIGHTGREEN_EX+'Thanks! \nNext: Use the "build" command');
+    print(Fore.LIGHTGREEN_EX+'Yay! you are all set up\nNext: Use the command: `resuMe build`'+Fore.WHITE);

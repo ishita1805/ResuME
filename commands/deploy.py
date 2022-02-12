@@ -21,7 +21,7 @@ style = style_from_dict({
 def cli():
     """Deploys website to github pages, auto deploys on updates"""
     if(getENV("PAT")==None or getENV("owner")==None):
-        print(Fore.RED+"Error: please use 'init' command first")
+        print(Fore.RED+"Error: please use the command: `resuMe init` first"+Fore.WHITE)
         return;
     deploy()
 
@@ -36,4 +36,4 @@ def deploy():
     ans = prompt(questions, style=style)
     repo = ans['repo']
     msg = deployer(repo)
-    print(Fore.LIGHTGREEN_EX+'Your ResuMe is deployed at: '+msg)
+    print(Fore.LIGHTGREEN_EX+'Your ResuMe is deployed at: '+msg+Fore.WHITE)
