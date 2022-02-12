@@ -1,4 +1,5 @@
 # importing libraries
+from filecmp import dircmp
 from time import sleep
 from selenium import webdriver
 from bs4 import BeautifulSoup
@@ -8,10 +9,10 @@ import json
 import os
 
 
-def scraping(url,github):
+def scraping(email,password,url,github):
 
     # accessing the browser
-    conf_path = os.path.join(os.path.dirname(__file__), 'config.txt')
+    # conf_path = os.path.join(os.path.dirname(__file__), 'config.txt')
     options = ChromeOptions()
     options.add_argument("--incognito")
     browser = webdriver.Chrome(ChromeDriverManager().install())
@@ -19,13 +20,13 @@ def scraping(url,github):
     assert "Python" in browser.title
     browser.maximize_window()
     browser.get('https://www.linkedin.com/uas/login')
-    files = open(conf_path)
-    lines = files.readlines()
-    username = lines[0]
-    password = lines[1]
+    # files = open(conf_path)
+    # lines = files.readlines()
+    # username = lines[0]
+    # password = lines[1]
 
     elementID = browser.find_element_by_id('username')
-    elementID.send_keys(username)
+    elementID.send_keys(email)
     elementID = browser.find_element_by_id('password')
     elementID.send_keys(password)
     elementID.submit()
@@ -95,153 +96,214 @@ def scraping(url,github):
         cur_height += cur_height
 
     src = BeautifulSoup(browser.page_source, 'lxml')
-    browser.close()
 
-    # ------------------------------------------ #
+    # ---------------------------------------------------------- #
 
     # GET BASIC INFO
     try:
-        BASIC = src.find_all("div", {"class": "pv-text-details__left-panel"})[0]
+        BASIC = src.find_all("section",{ "class": ["artdeco-card", "ember-view", "pv-top-card"] })[0]
         basic_obj = dict()
-        basic_obj["Name"] = BASIC.find("h1").get_text().strip()
-        basic_obj["Headline"] = BASIC.find("div", {"class": "text-body-medium"}).get_text().strip()
-        basic_obj["Location"] = BASIC.find("span", {"class": "text-body-small"}).get_text().strip()
+        basic_obj["name"] = BASIC.find("h1").get_text().strip()
+        basic_obj["headline"] = BASIC.find("div", {"class": "text-body-medium"}).get_text().strip()
+        basic_obj["location"] = BASIC.find("span", {"class": "text-body-small inline t-black--light break-words"}).get_text().strip()
         data["profile"] = basic_obj
     except Exception as e:
         pass
 
     # GET ABOUT INFO
     try:
-        ABOUT = src.find_all("section",{"class":'pv-about-section'})[0].get_text().split("   ")[-1].strip()
+        ABOUT = src.find("div",{ "id": "about" }).find_next_siblings()[1].get_text().strip();
         if(ABOUT != 'About'):
             data["about"] = ABOUT
     except Exception as e:
         pass
 
-    # GET EDUCATIONAL INFO
-    try:
-        EDUCATION = src.find_all("section",{"id":'education-section'})[0]
-        Eds = EDUCATION.find_all("li")
-        Educations = []
-        for i in range(len(Eds)):
-            ed = dict()
-            if(Eds[i].find("h3")):
-                Institute = Eds[i].find("h3").get_text().strip()
-                ed["Institute"] = Institute
-
-            OtherInfo = Eds[i].find_all("p")
-            for j in range(len(OtherInfo)):
-                ed[OtherInfo[j].find_all("span")[0].get_text().strip()] = OtherInfo[j].find_all("span")[1].get_text().strip()
-
-            Educations.append(ed)
-        data["education"] = Educations
-    except Exception as e:
-        pass
-
-    # GET CERTIFICATIONS
-    try:
-        CERTIFICATION = src.find_all("section",{"id":'certifications-section'})[0]
-        Certs = CERTIFICATION.find_all("li")
-        Certifications = []
-        for i in range(len(Certs)):
-            cer = dict()
-            if(Certs[i].find("h3")):
-                Title = Certs[i].find("h3").get_text().strip()
-                cer['Title'] = Title
-            
-            OtherInfo = Certs[i].find_all("p")
-            for j in range(len(OtherInfo)):
-                cer[OtherInfo[j].find_all("span")[0].get_text().strip()] = OtherInfo[j].find_all("span")[1].get_text().strip()
-            Certifications.append(cer)
-        data["certifications"] = Certifications
-    except Exception as e:
-        pass  
-
-    # GET EXPERIENCES
-    try:
-        EXPERIENCE = src.find_all("section",{"id":'experience-section'})[0]
-        Exs = EXPERIENCE.find_all("li", {"class":"pv-profile-section__list-item"})
-        Experiences = []
-        for i in range(len(Exs)):
-            exp = dict()
-            if(len(Exs[i].find_all("ul")) > 0):
-                # case with multiple roles
-                exp['Company Name'] = Exs[i].find_all("h3")[0].find_all("span")[1].get_text().strip()
-                roles = Exs[i].find_all("li")
-                exp1_arr = []
-                for j in range(len(roles)):
-                    dt1 = roles[j].find_all("h3")
-                    dt2 = roles[j].find_all("h4")
-                    exp1 = dict()
-                    for k in range(len(dt1)):
-                        sp = dt1[k].find_all("span")
-                        if(len(sp)>1):
-                            exp1[sp[0].get_text().strip()] = sp[1].get_text().strip()
-                    for k in range(len(dt2)):
-                        sp = dt2[k].find_all("span")
-                        if(len(sp)>1):
-                            exp1[sp[0].get_text().strip()] = sp[1].get_text().strip()
-                    exp1_arr.append(exp1)
-                exp['Roles'] = exp1_arr
-
-            else:
-                # heading
-                exp['Role'] = Exs[i].find("h3").get_text().strip()
-                dataList = Exs[i].find_all("h4")
-                # other data
-                for j in range(len(dataList)):
-                    exp[dataList[j].find_all("span")[0].get_text().strip(
-                    )] = dataList[j].find_all("span")[1].get_text().strip()
-                # company name
-                exp[Exs[i].find_all("p")[0].get_text().strip()] = Exs[i].find_all("p")[
-                    1].get_text().strip().split("\n")[0]
-            # adding to list
-            Experiences.append(exp)
-        data["experience"] = Experiences
-    except Exception as e:
-        pass
-
-    # GET VOLUNTEER
-    try:
-        VOLUNTEER = src.find_all("section",{"class":'volunteering-section'})[0]
-        Vls = VOLUNTEER.find_all("li")
-        Volunteers = []
-        for i in range(len(Vls)):
-            vl = {
-                "Title": "",
-                "Description": ""
-            }
-            vl["Title"] = Vls[i].find_all("h3")[0].get_text().strip()
-            vl["Description"] = Vls[i].find_all("p")[0].get_text().strip()
-            h4s = Vls[i].find_all("h4")
-            for j in range(len(h4s)):
-                spans = h4s[j].find_all("span")
-                vl[spans[0].get_text().strip()] = spans[1].get_text().strip()
-            Volunteers.append(vl)
-        data["volunteer"] = Volunteers
-    except Exception as e:
-        pass
-
     # GET SKILLS
     try:
-        SKILLS =  src.find_all("section",{"class":'pv-profile-section pv-skill-categories-section artdeco-card mt4 p5 ember-view'})[0]
-        all_skills = SKILLS.find_all("span", {"class": "pv-skill-category-entity__name-text t-16 t-black t-bold"})
-        my_skills = []
-        for i in range(len(all_skills)):
-            my_skills.append(all_skills[i].get_text().strip())
-        data["skills"] = my_skills
+        SKILLS = src.find("div",{ "id": "skills" }).find_next_siblings()[1];
+        allSkills = SKILLS.find("div",{ "class": "pvs-list__footer-wrapper" });
+        Skills = [];
+        if allSkills :
+            skillLink = allSkills.find("a", href=True)["href"];
+            browser.get(skillLink);
+            fh = browser.execute_script('return document.body.scrollHeight');
+            ch = browser.execute_script('return window.innerHeight');
+            while ch <= fh:
+                sleep(15)
+                browser.execute_script("window.scrollTo(0,"+str(cur_height)+");")
+                ch += ch
+            skillPage = BeautifulSoup(browser.page_source, 'lxml')
+            skills = skillPage.find_all("li",{ "class": "pvs-list__paged-list-item artdeco-list__item pvs-list__item--line-separated" });
+            for skillIten in skills:
+                sks = skillIten.find_all("span",{ "class": "visually-hidden" })
+                Skills.append(sks[0].get_text());
+        else :     
+            skills = SKILLS.find_all("li",{ "class": "artdeco-list__item pvs-list__item--line-separated pvs-list__item--one-column" });
+            for skill in skills:
+                sks = skill.find_all("span",{ "class": "visually-hidden" })
+                Skills.append(sks[0].get_text());
+        data["skills"] = Skills
     except Exception as e:
         pass
 
-    # ADD SOCIAL
+     # ADD SOCIAL
     data["social"] = [
         url, #linkedin
        'https://github.com/'+github, #github
     ]
-   
+
+    # GET EXPERIENCES
+    try:
+        EXPERIENCE = src.find("div",{ "id": "experience" }).find_next_siblings()[1];
+        allExps = EXPERIENCE.find("div",{ "class": "pvs-list__footer-wrapper" });
+        Experiences = [];
+        if allExps :
+            expLink = allExps.find("a", href=True)["href"];
+            browser.get(expLink);
+            fh = browser.execute_script('return document.body.scrollHeight');
+            ch = browser.execute_script('return window.innerHeight');
+            while ch <= fh:
+                sleep(15)
+                browser.execute_script("window.scrollTo(0,"+str(cur_height)+");")
+                ch += ch
+            expPage = BeautifulSoup(browser.page_source, 'lxml');
+            Exs = expPage.find_all("li", { "class": "pvs-list__paged-list-item artdeco-list__item pvs-list__item--line-separated" });
+            for i in Exs:
+                exp = dict()
+                expList = i.find_all("li", { "class": "pvs-list__paged-list-item" });
+                if len(expList) > 0 : 
+                    expRoles = [];
+                    exp["heading"] = i.find("div",{ "class": "display-flex align-items-center" }).find("span", { "class": "visually-hidden"}).get_text().strip();
+                    for expLiItem in expList:
+                        expSpans = expLiItem.find_all("span",{ "class": "visually-hidden"});
+                        expRoleBody = [];
+                        for expSpItem in expSpans:
+                            expRoleBody.append(expSpItem.get_text().strip());
+                        expRoles.append(expRoleBody);
+                    exp["roles"] = expRoles;      
+                else :
+                    expSpans = i.find_all("span",{ "class": "visually-hidden"});
+                    exp["heading"] = expSpans.pop(0).get_text().strip();
+                    expBody = []
+                    for expBodyElm in expSpans:
+                        expBody.append(expBodyElm.get_text().strip());
+                    exp["body"] = expBody; 
+                Experiences.append(exp);   
+        else :
+            Exs = EXPERIENCE.find_all("li", {"class":"pvs-list__item--line-separated"});
+            for i in Exs:
+                exp = dict()
+                # this part doesn't work
+                expList = i.find_all("li", { "class": "" })
+                if len(expList) > 0 : 
+                    expRoles = [];
+                    exp["heading"] = i.find("div",{ "class": "display-flex align-items-center" }).find("span", { "class": "visually-hidden"}).get_text().strip();
+                    for expLiItem in expList:
+                        expSpans = expLiItem.find_all("span",{ "class": "visually-hidden"});
+                        expRoleBody = [];
+                        for expSpItem in expSpans:
+                            expRoleBody.append(expSpItem.get_text().strip());
+                        expRoles.append(expRoleBody);
+                    exp["roles"] = expRoles;      
+                # this part works
+                else :
+                    expSpans = i.find_all("span",{ "class": "visually-hidden"});
+                    exp["heading"] = expSpans.pop(0).get_text().strip();
+                    expBody = []
+                    for expBodyElm in expSpans:
+                        expBody.append(expBodyElm.get_text().strip());
+                    exp["body"] = expBody; 
+                Experiences.append(exp);  
+        data["experience"] = Experiences
+    except Exception as e:
+        pass
+
+    # GET EDUCATIONAL INFO
+    try:
+        EDUCATION = src.find("div",{ "id": "education" }).find_next_siblings()[1];
+        allEds = EDUCATION.find("div",{ "class": "pvs-list__footer-wrapper" });
+        Educations = []
+        if allEds:
+            edLink = allEds.find("a", href=True)["href"];
+            browser.get(edLink);
+            fh = browser.execute_script('return document.body.scrollHeight');
+            ch = browser.execute_script('return window.innerHeight');
+            while ch <= fh:
+                sleep(15)
+                browser.execute_script("window.scrollTo(0,"+str(cur_height)+");")
+                ch += ch
+            edsPage = BeautifulSoup(browser.page_source, 'lxml')
+            Eds = edsPage.find_all("li",{ "class":"pvs-list__paged-list-item" });
+            for i in Eds:
+                ed = dict()
+                eds = i.find_all("span",{ "class": "visually-hidden" })
+                if len(eds) > 0 : ed["institute"] = eds.pop(0).get_text().strip();
+                others = [];
+                for j in eds:
+                    others.append(j.get_text().strip());
+                ed["body"] = others;
+                Educations.append(ed);
+        else:
+            Eds = EDUCATION.find_all("li",{ "class":"pvs-list__item--line-separated" })
+            for i in Eds:
+                ed = dict()
+                eds = i.find_all("span",{ "class": "visually-hidden" })
+                if len(eds) > 0 : ed["institute"] = eds.pop(0).get_text().strip();
+                others = [];
+                for j in eds:
+                    others.append(j.get_text().strip());
+                ed["body"] = others;
+                Educations.append(ed);
+        data["education"] = Educations
+    except Exception as e:
+        pass
+
+    # GET CERTIFICATIONS (TODO: VIEW ALL)
+    try:
+        CERTIFICATION = src.find("div",{"id":'licenses_and_certifications'}).find_next_siblings()[1];
+        Certs = CERTIFICATION.find_all("li", { "class": "pvs-list__item--one-column" })
+        Certifications = []
+        for i in Certs:
+            cer = dict()
+            certs = i.find_all("span",{ "class": "visually-hidden"})
+            if len(certs) > 0 : cer["course"] = certs.pop(0).get_text();
+            if len(certs) > 0 : cer["organization"] = certs.pop(0).get_text();
+            others = [];
+            for j in certs:
+                others.append(j.get_text().strip());
+            cer["body"] = others;
+            Certifications.append(cer);
+        data["certifications"] = Certifications
+    except Exception as e:
+        pass  
+
+    # GET VOLUNTEER (TODO: VIEW ALL)
+    try:
+        VOLUNTEER = src.find("div",{ "id": "volunteering_experience" }).find_next_siblings()[1];
+        Vls = VOLUNTEER.find_all("li",{ "class": "artdeco-list__item pvs-list__item--line-separated pvs-list__item--one-column" })
+        Volunteers = []
+        for i in Vls:
+            vl = dict()
+            vls = i.find_all("span",{ "class": "visually-hidden" });
+            others = [];
+            # organization, role
+            if len(vls) > 0 : vl["role"] = vls.pop(0).get_text();
+            if len(vls) > 0 : vl["organization"] = vls.pop(0).get_text();
+            for j in vls:
+                others.append(j.get_text().strip());
+            vl["body"] = others;
+            Volunteers.append(vl);
+        data["volunteer"] = Volunteers
+    except Exception as e:
+        pass
+
+    browser.close();
+
     json_object = json.dumps(data, indent=4)
     return(json_object)
 
-
-# data = scraping('https://www.linkedin.com/in/anushravsinghal/','Primus023008 ')
+# data = scraping('https://www.linkedin.com/in/paulhigginsmentoring/','ishita1805')
 # print(data)
+
+# https://www.linkedin.com/in/paige-liwanag/
+# https://www.linkedin.com/in/paulhigginsmentoring/

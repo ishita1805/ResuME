@@ -18,7 +18,6 @@ style = style_from_dict({
 })
 
 @click.command()
-
 def cli():
     """Updates an existing website using your linkedin profile"""
     if(getENV("PAT")==None or getENV("owner")==None):

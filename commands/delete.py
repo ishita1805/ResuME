@@ -19,7 +19,6 @@ style = style_from_dict({
 
 
 @click.command()
-
 def cli():
     """Deletes the specified website"""
     if(getENV("PAT")==None or getENV("owner")==None):

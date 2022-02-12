@@ -22,7 +22,6 @@ style = style_from_dict({
 
 
 @click.command()
-
 def cli():
     """Generates a new website using your linkedin profile"""
     if(getENV("PAT")==None or getENV("owner")==None):
@@ -51,8 +50,16 @@ def build():
     if(verification ==None):
         print(Fore.RED+"Error: Linkedin link not valid");
         return;
+    # get creds
+    Email = getENV("Email");
+    Password = getENV("Password");
     # Scrape
-    obj = scraping(answers['Linkedin'],answers['Github'])
+    obj = scraping(
+        Email,
+        Password,
+        answers['Linkedin'],
+        answers['Github']
+        )
     # function to build website and push website to github
     op = builder(obj)
     if(op):

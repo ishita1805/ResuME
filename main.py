@@ -29,6 +29,7 @@ class MyCLI(click.MultiCommand):
         rv.sort()
         return rv
 
+    
     def get_command(self, ctx, name):
         ns = {}
         fn = os.path.join(plugin_folder, name + '.py')
@@ -37,7 +38,9 @@ class MyCLI(click.MultiCommand):
             eval(code, ns, ns)
         return ns['cli']
 
-cli = MyCLI(help=Fore.YELLOW+'This tool helps you generate beautiful websites in under 5 minuites. '+Fore.RED+'Requirement: Git CLI installed and authenticated on your device.'
+cli = MyCLI(
+    name='resuMe',
+    help=Fore.YELLOW+'This tool helps you generate beautiful websites in under 5 minuites. '+Fore.RED+'Requirement: Git CLI installed and authenticated on your device.'
             +Fore.LIGHTGREEN_EX+' Note: Please enter github details only for the account authenticated on your git CLI'+Fore.WHITE)
 
 

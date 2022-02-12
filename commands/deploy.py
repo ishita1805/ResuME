@@ -18,7 +18,6 @@ style = style_from_dict({
 
 
 @click.command()
-
 def cli():
     """Deploys website to github pages, auto deploys on updates"""
     if(getENV("PAT")==None or getENV("owner")==None):
