@@ -5,8 +5,6 @@ Hey there 👋🏽, I'm Ishita and I've made this project to help fellow develop
 
 ## **Table of Contents**
 - [Installation](#installation)
-    - [Using Python](#using-python)
-    - [Using An Executable](#installation)
 - [Usage](#usage)
     - [Requirements](#requirements)
     - [Integration with Github](#integration-with-github)
@@ -17,15 +15,13 @@ Hey there 👋🏽, I'm Ishita and I've made this project to help fellow develop
 
 ### **Installation**
 
-#### **Using Python**
-To install the CLI using python, use the command:
+You can find all versions of the CLI [here](https://github.com/ishita1805/resuMe/dist):
+
+To install the CLI:
+- download the latest version
+- run the command:
 ```
-    pip install resuMe
-```
-#### **Using and Executable**
-You can download the CLI from:
-```
-https://github.com/ishita1805/resuMe/exec
+pip install <path-to-whl-file>
 ```
 ### **Usage**
 
@@ -55,7 +51,7 @@ ResuMe has a bunch of cool features:
 
 - to deploy the website:
     ```
-    resuMe deploy <name-of-the-repository>
+    resuMe deploy
     ```
     *This command deploys the website to github pages*
 
@@ -68,7 +64,7 @@ ResuMe has a bunch of cool features:
 
 - to delete a website:
     ```
-    resuMe delete <name-of-the-repository>
+    resuMe delete
     ```
     *Important Note: Please do not delete the local copy or the repository manually*
     **What if i have already deleted my github repository or my local copy:**
@@ -77,7 +73,7 @@ ResuMe has a bunch of cool features:
 
 - to update your website:
     ```
-    resuMe update <name-of-the-repository>
+    resuMe update
     ```
 
 ### **Bugs and Feature Requests**

@@ -1,6 +1,5 @@
 config.txt
 __pycache__
 Output/ResuMe-*
-dist
 build
-main.spec
+resuMe.egg-info

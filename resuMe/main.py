@@ -43,6 +43,9 @@ cli = MyCLI(
             +Fore.LIGHTGREEN_EX+'Note: Please enter github details only for the account authenticated on your git CLI'+Fore.WHITE)
 
 
-if __name__ == '__main__':
+def init():
     welcome()
     cli()
+
+if __name__ == '__main__':
+    init()

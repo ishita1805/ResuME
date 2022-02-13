@@ -1,10 +1,14 @@
 import click
-from utils import getENV, updateBuilder, verifyLinkedinURL
-from scraping import scraping
 from PyInquirer import style_from_dict, Token, prompt
 import os
 from colorama import Fore, init
 import psutil
+
+from utils import getENV, updateBuilder, verifyLinkedinURL
+from scraping import scraping
+
+# from resuMe.utils import getENV, updateBuilder, verifyLinkedinURL
+# from resuMe.scraping import scraping
 
 if psutil.Process(os.getpid()).parent().name() == 'cmd.exe':
     init(convert=True)

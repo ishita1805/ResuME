@@ -1,13 +1,16 @@
 import click
-from utils import getENV, deployer
 from PyInquirer import style_from_dict, Token, prompt
 import os
 from colorama import Fore, init
 import psutil
 
+from utils import delRepo, getENV
+# from resuMe.utils import delRepo, getENV
+
 if psutil.Process(os.getpid()).parent().name() == 'cmd.exe':
     init(convert=True)
-    
+
+
 style = style_from_dict({
     Token.QuestionMark: '#ff2b73 bold',
     Token.Selected: '',
@@ -19,21 +22,19 @@ style = style_from_dict({
 
 @click.command()
 def cli():
-    """Deploys website to github pages, auto deploys on updates"""
+    """Deletes the specified website"""
     if(getENV("PAT")==None or getENV("owner")==None):
         print(Fore.RED+"Error: please use the command: `resuMe init` first"+Fore.WHITE)
         return;
-    deploy()
-
-def deploy():
     questions = [
         {
             'type': 'input',
-            'message': 'Name of the github repository to be deployed',
+            'message': 'Enter name of repository to be deleted',
             'name': 'repo'
         },
     ]
     ans = prompt(questions, style=style)
-    repo = ans['repo']
-    msg = deployer(repo)
-    print(Fore.LIGHTGREEN_EX+'Your ResuMe is deployed at: '+msg+Fore.WHITE)
+    delRepo(ans['repo'])
+    
+
+   
