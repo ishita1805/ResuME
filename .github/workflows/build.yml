@@ -21,6 +21,6 @@ jobs:
       - name: Build
         run: python build.py bdist_wheel
       - uses: actions/download-artifact@v2
-      with:
-        path: ./build
+        with:
+          path: ./build
 
