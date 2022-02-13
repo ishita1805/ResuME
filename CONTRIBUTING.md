@@ -65,8 +65,8 @@ feature/#1-init
 #### **Making Pull Requests**
 
 Here's a checklist to make sure your all your pull requests get accepted 😊
-- Create your feature branch from the updated branch:&ensp;`dev`
-- Make the pull request to the target branch:&ensp;`dev`
+- Create your feature branch from the updated branch:&ensp;`contrib`
+- Make the pull request to the target branch:&ensp;`contrib`
 - Check the issue tracker to make sure your contribution is unique.
 
 <br/>
