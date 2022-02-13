@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='resume-cli',
-    version='0.1.2',
+    version='0.1.3',
     packages=(
     find_packages(include=['resuMe','resuMe/*'])+
     find_packages()
@@ -21,7 +21,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'resuMe = resuMe.main:init',
+            'resume-cli = resuMe.main:init',
         ],
     },
 )

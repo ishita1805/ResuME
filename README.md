@@ -1,5 +1,5 @@
 # [ResuME - Website Generator ](https://github.com/ishita1805/ResuME)
-#### **A CLI Tool to generate and deploy beautiful websites in under 5 minuites**
+#### **A CLI Tool to build and deploy beautiful websites in under 5 minuites**
 
 Hey there 👋🏽, I'm Ishita and I've made this project to help fellow developers build and deploy their portfolio websites within minuites. 🧁
 
@@ -16,7 +16,7 @@ Hey there 👋🏽, I'm Ishita and I've made this project to help fellow develop
 
 ### **Installation**
 
-You can find all versions of the CLI [here](https://github.com/ishita1805/resuMe/dist):
+You can find all versions of the CLI [here](https://pypi.org/project/resume-cli/#history):
 
 To install the CLI:
 - run the command:
@@ -36,33 +36,33 @@ To have a github project show up on the website, add the topic: `resume-cli` to 
 ResuMe has a bunch of cool features:
 - to configure the CLI run: 
     ```
-    resuMe init
+    resume-cli init
     ```
     *this is a one-time step.*
 
 - to build a website using your linkedin and github accounts:
     ```
-    resuMe build
+    resume-cli build
     ```
     *This command creates a website and pushes it to your github account.*
 
 
 - to deploy the website:
     ```
-    resuMe deploy
+    resume-cli deploy
     ```
     *This command deploys the website to github pages*
 
 
 - to list all your websites:
     ```
-    resuMe list
+    resume-cli list
     ```
 
 
 - to delete a website:
     ```
-    resuMe delete
+    resume-cli delete
     ```
     *Important Note: Please do not delete the local copy or the repository manually*
     **What if i have already deleted my github repository or my local copy:**
@@ -71,7 +71,7 @@ ResuMe has a bunch of cool features:
 
 - to update your website:
     ```
-    resuMe update
+    resume-cli update
     ```
 
 ### **Bugs and Feature Requests**
