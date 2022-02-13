@@ -1,8 +1,8 @@
 import click
 from colorama import Fore, init
 
-# from utils import list
-from resuMe.utils import list
+from utils import list
+# from resuMe.utils import list
 
 
 @click.command()

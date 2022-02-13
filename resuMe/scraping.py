@@ -10,7 +10,7 @@ import logging
 
 
 
-def scraping(email,password,url,github):
+def scraping(email,password,url,github, theme):
     logging.disable(logging.CRITICAL);
 
     options = ChromeOptions()
@@ -43,6 +43,8 @@ def scraping(email,password,url,github):
     
 
     data = dict()
+
+    data["theme"] = theme;
 
     # ---------------------------------------------------------- #
 

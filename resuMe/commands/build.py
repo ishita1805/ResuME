@@ -4,11 +4,11 @@ import os
 from colorama import Fore, init
 import psutil
 
-# from utils import getENV, builder, verifyLinkedinURL
-# from scraping import scraping
+from utils import getENV, builder, verifyLinkedinURL
+from scraping import scraping
 
-from resuMe.utils import getENV, builder, verifyLinkedinURL
-from resuMe.scraping import scraping
+# from resuMe.utils import getENV, builder, verifyLinkedinURL
+# from resuMe.scraping import scraping
 
 if psutil.Process(os.getpid()).parent().name() == 'cmd.exe':
     init(convert=True)
@@ -50,10 +50,33 @@ def build():
             'message': 'Enter Github username',
             'name': 'Github'
         },
+         {
+            'type': 'checkbox',
+            'message': 'Select a theme (default purple)',
+            'name': 'Theme',
+            'choices': [ 
+                {
+                    'name': 'Blue'
+                },
+                {
+                    'name': 'Purple'
+                },
+                {
+                    'name': 'Orange'
+                }
+            ]
+        },
     ]
 
     answers = prompt(questions, style=style)
-    
+    print(answers["Theme"])
+    # verifying theme
+    if len(answers["Theme"]) == 0 :
+        print(Fore.RED+"Error: Please select atleast one theme"+Fore.WHITE);
+        return;
+    if len(answers["Theme"]) > 0 :
+        print(Fore.RED+"Error: Please select only one theme"+Fore.WHITE);
+        return;
     verification = verifyLinkedinURL(answers["Linkedin"])
     if(verification ==None):
         print(Fore.RED+"Error: Linkedin URL not valid"+Fore.WHITE);
@@ -66,7 +89,8 @@ def build():
         email,
         password,
         answers['Linkedin'],
-        answers['Github']
+        answers['Github'],
+        answers['Theme'][0]
         )
     # function to build website and push website to github
     op = builder(obj)
