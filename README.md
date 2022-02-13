@@ -10,6 +10,7 @@ Hey there 👋🏽, I'm Ishita and I've made this project to help fellow develop
     - [Integration with Github](#integration-with-github)
     - [Commands and Features](#commands-and-features)
 - [Bugs and Feature Requests](#bugs-and-feature-requests)
+- [Frequently Asked Questions](#frequently-asked-questions)
 - [Contributing](https://github.com/ishita1805/ResuME/blob/main/CONTRIBUTING.md)
 
 
@@ -39,7 +40,6 @@ ResuMe has a bunch of cool features:
     resuMe init
     ```
     *this is a one-time step.*
-
 
 - to build a website using your linkedin and github accounts:
     ```
@@ -79,3 +79,18 @@ ResuMe has a bunch of cool features:
 - Please add your bug report or feature request to the issues tab with an appropriate label.
 - Make sure to look through the issues to not create a duplicate issue
 
+
+### **Frequently Asked Questions**
+
+- How do i generate my github PAT:
+    
+    ```
+    Head over to your github account, you can create your PAT under:
+    settings > developer settings > Personal access tokens
+    ```
+
+- What permissions to give to my PAT:
+    ```
+    repo: Full control of private repositories
+    delete_repo: Delete repositories
+    ```

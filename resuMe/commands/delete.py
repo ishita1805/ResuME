@@ -23,18 +23,22 @@ style = style_from_dict({
 @click.command()
 def cli():
     """Deletes the specified website"""
-    if(getENV("PAT")==None or getENV("owner")==None):
-        print(Fore.RED+"Error: please use the command: `resuMe init` first"+Fore.WHITE)
-        return;
-    questions = [
-        {
-            'type': 'input',
-            'message': 'Enter name of repository to be deleted',
-            'name': 'repo'
-        },
-    ]
-    ans = prompt(questions, style=style)
-    delRepo(ans['repo'])
+    try:
+        if(getENV("PAT")==None or getENV("owner")==None):
+            print(Fore.RED+"Error: please use the command: `resuMe init` first"+Fore.WHITE)
+            return;
+        questions = [
+            {
+                'type': 'input',
+                'message': 'Enter name of repository to be deleted',
+                'name': 'repo'
+            },
+        ]
+        ans = prompt(questions, style=style)
+        delRepo(ans['repo'])
+    except Exception as e:
+        print(Fore.RED+"An error occured please try again"+Fore.WHITE)
+        pass
     
 
    

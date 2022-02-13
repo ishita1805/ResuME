@@ -28,10 +28,14 @@ style = style_from_dict({
 @click.command()
 def cli():
     """Generates a new website using your linkedin profile"""
-    if(getENV("PAT")==None or getENV("owner")==None):
-        print(Fore.RED+"Error: Please use the command: `resuMe init` first"+Fore.WHITE);
-        return;
-    build()
+    try: 
+        if(getENV("PAT")==None or getENV("owner")==None):
+            print(Fore.RED+"Error: Please use the command: `resuMe init` first"+Fore.WHITE);
+            return;
+        build()
+    except Exception as e:
+        print(Fore.RED+"An error occured please try again"+Fore.WHITE)
+        pass
 
 
 def build():

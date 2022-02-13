@@ -24,30 +24,34 @@ style = style_from_dict({
 @click.command()
 def cli():
     """Updates an existing website using your linkedin profile"""
-    if(getENV("PAT")==None or getENV("owner")==None):
-        print(Fore.RED+"Error: please use the command: `resuMe init` first"+Fore.WHITE);
-        return;
-    questions = [
-        {
-            'type': 'input',
-            'message': 'Enter Linkedin profile',
-            'name': 'Linkedin'
-        },
-        {
-            'type': 'input',
-            'message': 'Enter Github username',
-            'name': 'Github'
-        },
-    ]
-    answers = prompt(questions, style=style)
-    verification = verifyLinkedinURL(answers["Linkedin"])
-    if(verification ==None):
-        print(Fore.RED+"Error: Linkedin URL not valid"+Fore.WHITE)
-        return;
-    # scrap 
-    obj = scraping(answers['Linkedin'],answers['Github'])
-    op = updateBuilder(obj)
-    if(op):
-        print(Fore.RED+'Error: Repository doesn\'t exists! try the command: `resuMe build`'+Fore.WHITE)
-    else:
-        print(Fore.LIGHTGREEN_EX+'Yay! your website is updated\nNext: Use the command: `resuMe list`'+Fore.WHITE)
+    try:
+        if(getENV("PAT")==None or getENV("owner")==None):
+            print(Fore.RED+"Error: please use the command: `resuMe init` first"+Fore.WHITE);
+            return;
+        questions = [
+            {
+                'type': 'input',
+                'message': 'Enter Linkedin profile',
+                'name': 'Linkedin'
+            },
+            {
+                'type': 'input',
+                'message': 'Enter Github username',
+                'name': 'Github'
+            },
+        ]
+        answers = prompt(questions, style=style)
+        verification = verifyLinkedinURL(answers["Linkedin"])
+        if(verification ==None):
+            print(Fore.RED+"Error: Linkedin URL not valid"+Fore.WHITE)
+            return;
+        # scrap 
+        obj = scraping(answers['Linkedin'],answers['Github'])
+        op = updateBuilder(obj)
+        if(op):
+            print(Fore.RED+'Error: Repository doesn\'t exists! try the command: `resuMe build`'+Fore.WHITE)
+        else:
+            print(Fore.LIGHTGREEN_EX+'Yay! your website is updated\nNext: Use the command: `resuMe list`'+Fore.WHITE)
+    except Exception as e:
+        print(Fore.RED+"An error occured please try again"+Fore.WHITE)
+        pass

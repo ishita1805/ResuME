@@ -22,10 +22,14 @@ style = style_from_dict({
 @click.command()
 def cli():
     """Deploys website to github pages, auto deploys on updates"""
-    if(getENV("PAT")==None or getENV("owner")==None):
-        print(Fore.RED+"Error: please use the command: `resuMe init` first"+Fore.WHITE)
-        return;
-    deploy()
+    try:
+        if(getENV("PAT")==None or getENV("owner")==None):
+            print(Fore.RED+"Error: please use the command: `resuMe init` first"+Fore.WHITE)
+            return;
+        deploy()
+    except Exception as e:
+        print(Fore.RED+"An error occured please try again"+Fore.WHITE)
+        pass
 
 def deploy():
     questions = [
