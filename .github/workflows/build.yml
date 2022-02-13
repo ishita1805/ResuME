@@ -18,11 +18,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install setuptools wheel twine
-      - name: Build a binary wheel and a source tarball
+      - name: Build a binary wheel and a source tarball and publish
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
-        python build.py bdist_wheel
-        twine upload dist/*
+          python build.py bdist_wheel
+          twine upload dist/*
 
