@@ -1,5 +1,5 @@
 __pycache__
-dist
-build
-resuMe.egg-info
+# dist
+# build
+# resuMe.egg-info
 resuMe/.env
