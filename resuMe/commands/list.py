@@ -1,8 +1,11 @@
 import click
+import os
 from colorama import Fore, init
 
-from utils import list
-# from resuMe.utils import list
+if os.getenv('DEV') == 'True':
+    from utils import list
+else:
+    from resuMe.utils import list
 
 
 @click.command()

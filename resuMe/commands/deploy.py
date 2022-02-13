@@ -4,8 +4,10 @@ import os
 from colorama import Fore, init
 import psutil
 
-from utils import getENV, deployer
-# from resuMe.utils import getENV, deployer
+if os.getenv('DEV') == 'True':
+    from utils import getENV, deployer
+else:
+    from resuMe.utils import getENV, deployer
 
 if psutil.Process(os.getpid()).parent().name() == 'cmd.exe':
     init(convert=True)

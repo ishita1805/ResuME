@@ -2,6 +2,9 @@ import click
 import os
 from colorama import Fore, init
 import psutil
+from dotenv import load_dotenv
+
+load_dotenv();
 
 if psutil.Process(os.getpid()).parent().name() == 'cmd.exe':
     init(convert=True)

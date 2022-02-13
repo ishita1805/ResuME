@@ -11,7 +11,10 @@ packages = [
     'lxml==4.6.3',
     'webdriver-manager==3.4.1',
     'colorama==0.4.4',
-    'psutil==5.8.0'
+    'psutil==5.8.0',
+    'setuptools',
+    'wheel',
+    'python-dotenv'
 ]
 
 # implement pip as a subprocess:
