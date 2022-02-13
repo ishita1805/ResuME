@@ -10,7 +10,7 @@ import logging
 
 
 
-def scraping(email,password,url,github, theme):
+def scraping(email,password,url,github,theme):
     logging.disable(logging.CRITICAL);
 
     options = ChromeOptions()
@@ -43,8 +43,6 @@ def scraping(email,password,url,github, theme):
     
 
     data = dict()
-
-    data["theme"] = theme;
 
     # ---------------------------------------------------------- #
 
@@ -296,11 +294,10 @@ def scraping(email,password,url,github, theme):
     except Exception as e:
         pass
 
+    # SET THEME
+    data["theme"] = theme;
+
     browser.close();
 
     json_object = json.dumps(data, indent=4)
     return(json_object)
-
-# print(data)
-# https://www.linkedin.com/in/paige-liwanag/
-# https://www.linkedin.com/in/paulhigginsmentoring/
