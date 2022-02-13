@@ -4,8 +4,8 @@ import os
 from colorama import Fore, init
 import psutil
 
-from utils import getENV, deployer
-# from resuMe.utils import getENV, deployer
+# from utils import getENV, deployer
+from resuMe.utils import getENV, deployer
 
 if psutil.Process(os.getpid()).parent().name() == 'cmd.exe':
     init(convert=True)
@@ -42,4 +42,4 @@ def deploy():
     ans = prompt(questions, style=style)
     repo = ans['repo']
     msg = deployer(repo)
-    print(Fore.LIGHTGREEN_EX+'Your ResuMe is deployed at: '+msg+Fore.WHITE)
+    print(Fore.LIGHTGREEN_EX+'Your ResuMe is being deployed at: '+msg+Fore.WHITE)

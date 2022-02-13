@@ -4,11 +4,11 @@ import os
 from colorama import Fore, init
 import psutil
 
-from utils import getENV, builder, verifyLinkedinURL
-from scraping import scraping
+# from utils import getENV, builder, verifyLinkedinURL
+# from scraping import scraping
 
-# from resuMe.utils import getENV, builder, verifyLinkedinURL
-# from resuMe.scraping import scraping
+from resuMe.utils import getENV, builder, verifyLinkedinURL
+from resuMe.scraping import scraping
 
 if psutil.Process(os.getpid()).parent().name() == 'cmd.exe':
     init(convert=True)
@@ -56,25 +56,24 @@ def build():
             'name': 'Theme',
             'choices': [ 
                 {
-                    'name': 'Blue'
+                    'name': 'blue'
                 },
                 {
-                    'name': 'Purple'
+                    'name': 'purple'
                 },
                 {
-                    'name': 'Orange'
+                    'name': 'orange'
                 }
             ]
         },
     ]
 
     answers = prompt(questions, style=style)
-    print(answers["Theme"])
     # verifying theme
     if len(answers["Theme"]) == 0 :
         print(Fore.RED+"Error: Please select atleast one theme"+Fore.WHITE);
         return;
-    if len(answers["Theme"]) > 0 :
+    if len(answers["Theme"]) > 1 :
         print(Fore.RED+"Error: Please select only one theme"+Fore.WHITE);
         return;
     verification = verifyLinkedinURL(answers["Linkedin"])
