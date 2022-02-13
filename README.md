@@ -27,11 +27,10 @@ pip install <path-to-whl-file>
 
 #### **Reqruitments**
 To be able to use the CLI you must have the following:
-- Git CLI installed and authenticated on your machine
-- A github account
-
+- Python
+- Git CLI
 #### **Integration with Github**
-To have a github project show up in the website, add the `resume-cli` topic to it.
+To have a github project show up on the website, add the topic: `resume-cli` to it.
 
 #### **Commands and Features**
 ResuMe has a bunch of cool features:
