@@ -19,15 +19,14 @@ Hey there 👋🏽, I'm Ishita and I've made this project to help fellow develop
 You can find all versions of the CLI [here](https://github.com/ishita1805/resuMe/dist):
 
 To install the CLI:
-- download the latest version
 - run the command:
 ```
-pip install <path-to-whl-file>
+pip install resuMe
 ```
 ### **Usage**
 
-#### **Reqruitments**
-To be able to use the CLI you must have the following:
+#### **Requirements**
+To be able to use the CLI you must have the following installed and working:
 - Python
 - Git CLI
 #### **Integration with Github**
