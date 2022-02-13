@@ -9,5 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-        with: 
-          script: print('setup python')
+      with:
+        python-version: 3.9
+      - name: Build binary wheel and a source tarball
+        run: python publish.py bdist_wheel
+
