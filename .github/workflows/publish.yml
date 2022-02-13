@@ -4,13 +4,16 @@ on:
     branches:
       - main
 jobs:
-  publish:
+  build:
+    name: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
+        with:
+          python-version: 3.9
       - name: Build binary wheel and a source tarball
         run: python publish.py bdist_wheel
 
