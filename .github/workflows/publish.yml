@@ -1,0 +1,16 @@
+name: 'publish'
+on: 
+  push:
+    branches:
+      - main
+  merge:
+    branches:
+      - main
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with: 
+          script: print('setup python')
