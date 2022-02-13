@@ -21,7 +21,7 @@ You can find all versions of the CLI [here](https://github.com/ishita1805/resuMe
 To install the CLI:
 - run the command:
 ```
-pip install resuMe
+pip install resume-cli
 ```
 ### **Usage**
 
