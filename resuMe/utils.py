@@ -55,7 +55,7 @@ def builder(data):
     dta = json.loads(data)
     # get output path
     output = getENV("Output");
-    path_output = os.path.join(output, 'Output')
+    path_output = os.path.join(output, 'ResuMe-Output')
     # create output directory if it doesn't exist
     if not os.path.exists(path_output):
         createPath(path_output);
@@ -72,7 +72,7 @@ def builder(data):
 def github(name, data):
     # get output path
     Output = getENV("Output");
-    path_output = os.path.join(Output, 'Output')
+    path_output = os.path.join(Output, 'ResuMe-Output')
     dest = "/ResuMe-"+name.replace(" ","-")
     pat = getENV("PAT")
     owner = getENV("owner")
@@ -105,7 +105,7 @@ def updateBuilder(data):
     dta = json.loads(data)
     # check if folder doesn't exists
     output = getENV("Output");
-    path_output = os.path.join(output, 'Output')
+    path_output = os.path.join(output, 'ResuMe-Output')
     dest = path_output+"/ResuMe-"+dta['profile']['name'].replace(" ","-")
     if(os.path.isdir(dest)==False):
         return True;
@@ -127,7 +127,7 @@ def updateBuilder(data):
 def deployer(repo):
     # change directory and create a new branch
     output = getENV("Output");
-    path_output = os.path.join(output, 'Output')
+    path_output = os.path.join(output, 'ResuMe-Output')
     os.chdir(path_output+'/'+repo)
     os.system('git checkout -b gh-pages')
     
@@ -146,7 +146,7 @@ def deployer(repo):
 def list():
     # get output path
     output = getENV("Output");
-    path_output = os.path.join(output, 'Output')
+    path_output = os.path.join(output, 'ResuMe-Output')
     if(os.path.exists(path_output)):
         os.chdir(path_output);
         list = os.listdir();
@@ -164,7 +164,7 @@ def list():
 def delRepo(repo):
     # get output path
     output = getENV("Output");
-    path_output = os.path.join(output, 'Output')
+    path_output = os.path.join(output, 'ResuMe-Output')
     os.chdir(path_output)
     check = False
     # check if repo exists
