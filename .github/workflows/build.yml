@@ -21,5 +21,7 @@ jobs:
       - name: Build
         run: python build.py bdist_wheel
       - uses: actions/upload-artifact@v2
-      - store_artifact:
-        path: /build
+        with:
+          name: resuMe
+          path: ./build
+
