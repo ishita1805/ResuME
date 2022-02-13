@@ -1,6 +1,9 @@
 import sys
 import subprocess
 from colorama import Fore
+import os
+import shutil
+
 # list of packages
 packages = [
     'click==7.1.2',
@@ -26,5 +29,8 @@ reqs = subprocess.check_output([sys.executable, '-m', 'pip',
 'freeze'])
 installed_packages = [r.decode().split('==')[0] for r in reqs.split()]
 
+# copy .env.example to .env in resuMe
+path = os.getcwd()
+shutil.copyfile(path+'/resuMe/.env.example',path+'/resuMe/.env');
 
 print(Fore.LIGHTGREEN_EX+'Yay! ResuMe is all set up\n'+Fore.WHITE)
