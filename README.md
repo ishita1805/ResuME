@@ -21,7 +21,7 @@ You can find all versions of the CLI [here](https://github.com/ishita1805/resuMe
 To install the CLI:
 - run the command:
 ```
-pip install resume-cli
+pip install resuMe
 ```
 ### **Usage**
 
@@ -36,33 +36,33 @@ To have a github project show up on the website, add the topic: `resume-cli` to 
 ResuMe has a bunch of cool features:
 - to configure the CLI run: 
     ```
-    resume-cli init
+    resuMe init
     ```
     *this is a one-time step.*
 
 - to build a website using your linkedin and github accounts:
     ```
-    resume-cli build
+    resuMe build
     ```
     *This command creates a website and pushes it to your github account.*
 
 
 - to deploy the website:
     ```
-    resume-cli deploy
+    resuMe deploy
     ```
     *This command deploys the website to github pages*
 
 
 - to list all your websites:
     ```
-    resume-cli list
+    resuMe list
     ```
 
 
 - to delete a website:
     ```
-    resume-cli delete
+    resuMe delete
     ```
     *Important Note: Please do not delete the local copy or the repository manually*
     **What if i have already deleted my github repository or my local copy:**
@@ -71,7 +71,7 @@ ResuMe has a bunch of cool features:
 
 - to update your website:
     ```
-    resume-cli update
+    resuMe update
     ```
 
 ### **Bugs and Feature Requests**
