@@ -53,7 +53,7 @@ def cli():
         ]
         answers = prompt(questions, style=style)
         setENV(answers)
-        print(Fore.LIGHTGREEN_EX+'Yay! you are all set up\nNext: Use the command: `resuMe build`'+Fore.WHITE);
+        print(Fore.LIGHTGREEN_EX+'Yay! you are all set up\nNext: Use the command: `resume-cli build`'+Fore.WHITE);
     except Exception as e:
         print(Fore.RED+"An error occured please try again"+Fore.WHITE)
         pass

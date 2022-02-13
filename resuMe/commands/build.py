@@ -31,7 +31,7 @@ def cli():
     """Generates a new website using your linkedin profile"""
     try: 
         if(getENV("PAT")==None or getENV("owner")==None):
-            print(Fore.RED+"Error: Please use the command: `resuMe init` first"+Fore.WHITE);
+            print(Fore.RED+"Error: Please use the command: `resume-cli init` first"+Fore.WHITE);
             return;
         build()
     except Exception as e:
@@ -51,7 +51,7 @@ def build():
             'message': 'Enter Github username',
             'name': 'Github'
         },
-         {
+        {
             'type': 'checkbox',
             'message': 'Select a theme (default purple)',
             'name': 'Theme',
@@ -95,7 +95,7 @@ def build():
     # function to build website and push website to github
     op = builder(obj)
     if(op):
-        print(Fore.RED+'Error: Repository already exists! try the command: `resuMe update`'+Fore.WHITE)
+        print(Fore.RED+'Error: Repository already exists! try the command: `resume-cli update`'+Fore.WHITE)
     else:
-        print(Fore.LIGHTGREEN_EX+'Yay! your website is built\nNext: Use the command: `resuMe deploy`'+Fore.WHITE)
+        print(Fore.LIGHTGREEN_EX+'Yay! your website is built\nNext: Use the command: `resume-cli deploy`'+Fore.WHITE)
 

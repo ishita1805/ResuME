@@ -27,7 +27,7 @@ def cli():
     """Updates an existing website using your linkedin profile"""
     try:
         if(getENV("PAT")==None or getENV("owner")==None):
-            print(Fore.RED+"Error: please use the command: `resuMe init` first"+Fore.WHITE);
+            print(Fore.RED+"Error: please use the command: `resume-cli init` first"+Fore.WHITE);
             return;
         questions = [
             {
@@ -40,19 +40,51 @@ def cli():
                 'message': 'Enter Github username',
                 'name': 'Github'
             },
+            {
+            'type': 'checkbox',
+            'message': 'Select a theme (default purple)',
+            'name': 'Theme',
+            'choices': [ 
+                {
+                    'name': 'blue'
+                },
+                {
+                    'name': 'purple'
+                },
+                {
+                    'name': 'orange'
+                }
+            ]
+        },
         ]
         answers = prompt(questions, style=style)
+        # verifying theme
+        if len(answers["Theme"]) == 0 :
+            print(Fore.RED+"Error: Please select atleast one theme"+Fore.WHITE);
+            return;
+        if len(answers["Theme"]) > 1 :
+            print(Fore.RED+"Error: Please select only one theme"+Fore.WHITE);
+            return;
         verification = verifyLinkedinURL(answers["Linkedin"])
         if(verification ==None):
             print(Fore.RED+"Error: Linkedin URL not valid"+Fore.WHITE)
             return;
+        # get creds
+        email = getENV("Email");
+        password = getENV("Password");
         # scrap 
-        obj = scraping(answers['Linkedin'],answers['Github'])
+        obj = scraping(
+            email,
+            password,
+            answers['Linkedin'],
+            answers['Github'],
+            answers['Theme'][0]
+        )
         op = updateBuilder(obj)
         if(op):
-            print(Fore.RED+'Error: Repository doesn\'t exists! try the command: `resuMe build`'+Fore.WHITE)
+            print(Fore.RED+'Error: Repository doesn\'t exists! try the command: `resume-cli build`'+Fore.WHITE)
         else:
-            print(Fore.LIGHTGREEN_EX+'Yay! your website is updated\nNext: Use the command: `resuMe list`'+Fore.WHITE)
+            print(Fore.LIGHTGREEN_EX+'Yay! your website is updated\nNext: Use the command: `resume-cli list`'+Fore.WHITE)
     except Exception as e:
         print(Fore.RED+"An error occured please try again"+Fore.WHITE)
         pass

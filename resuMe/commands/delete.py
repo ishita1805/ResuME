@@ -27,7 +27,7 @@ def cli():
     """Deletes the specified website"""
     try:
         if(getENV("PAT")==None or getENV("owner")==None):
-            print(Fore.RED+"Error: please use the command: `resuMe init` first"+Fore.WHITE)
+            print(Fore.RED+"Error: please use the command: `resume-cli init` first"+Fore.WHITE)
             return;
         questions = [
             {

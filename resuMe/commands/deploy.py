@@ -26,7 +26,7 @@ def cli():
     """Deploys website to github pages, auto deploys on updates"""
     try:
         if(getENV("PAT")==None or getENV("owner")==None):
-            print(Fore.RED+"Error: please use the command: `resuMe init` first"+Fore.WHITE)
+            print(Fore.RED+"Error: please use the command: `resume-cli init` first"+Fore.WHITE)
             return;
         deploy()
     except Exception as e:

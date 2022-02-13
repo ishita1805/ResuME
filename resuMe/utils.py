@@ -151,13 +151,13 @@ def list():
         os.chdir(path_output);
         list = os.listdir();
         if(len(list) <= 0):
-            print(Fore.RED+'No ResuMe\'s Available, Try the command: `resuMe build`'+Fore.WHITE)
+            print(Fore.RED+'No ResuMe\'s Available, Try the command: `resume-cli build`'+Fore.WHITE)
         else:
             print(Fore.LIGHTGREEN_EX+'Available ResuMe\'s:'+Fore.WHITE)
             for i in range(0,len(list)):
                 print(Fore.LIGHTGREEN_EX+list[i].strip()+Fore.WHITE)
     else:
-        print(Fore.RED+'No ResuMe\'s Available, Try the command: `resuMe build`'+Fore.WHITE)
+        print(Fore.RED+'No ResuMe\'s Available, Try the command: `resume-cli build`'+Fore.WHITE)
         
 
 
