@@ -4,11 +4,11 @@ import os
 from colorama import Fore, init
 import psutil
 
-from utils import getENV, builder, verifyLinkedinURL
-from scraping import scraping
+# from utils import getENV, builder, verifyLinkedinURL
+# from scraping import scraping
 
-# from resuMe.utils import getENV, builder, verifyLinkedinURL
-# from resuMe.scraping import scraping
+from resuMe.utils import getENV, builder, verifyLinkedinURL
+from resuMe.scraping import scraping
 
 if psutil.Process(os.getpid()).parent().name() == 'cmd.exe':
     init(convert=True)
