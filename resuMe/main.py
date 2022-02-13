@@ -41,7 +41,7 @@ class MyCLI(click.MultiCommand):
         return ns['cli']
 
 cli = MyCLI(
-    name='resuMe',
+    name='resume-cli',
     help=Fore.YELLOW+'This tool helps you generate beautiful websites in under 5 minuites.\n'+Fore.RED+'Requirement: Git CLI installed and authenticated on your machine.\n'
             +Fore.LIGHTGREEN_EX+'Note: Please enter github details only for the account authenticated on your git CLI'+Fore.WHITE)
 
